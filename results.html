@@ -16,14 +16,42 @@
     <link href="
     https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css
     " rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/fcc5b5924a.js" crossorigin="anonymous"></script>
     <!-- CSS link -->
     <link rel="stylesheet" href="./Assets/styles.css">
 
 </head>
 
 <body>
-    
-
+        
+    <!-- Previous search navigator -->
+    <nav class="panel is-info container">
+        <p class="panel-heading">
+            Previous Searches
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search" id="searchPrev">
+                <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </p>
+        </div>
+        <p class="panel-tabs">
+            <a class="is-active" onclick="changeActiveTab(event)">All</a>
+            <a onclick="changeActiveTab(event)">Car</a>
+            <a onclick="changeActiveTab(event)">Bike</a>
+            <a onclick="changeActiveTab(event)">Walk</a>
+        </p>
+        <div id="previousSearchContent">
+        </div>
+        <div class="panel-block">
+            <button class="button is-link is-outlined is-fullwidth">
+                Delete Selected Routes
+            </button>
+        </div>
+    </nav>
 
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
