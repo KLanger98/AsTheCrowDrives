@@ -10,12 +10,12 @@
     <!-- jQuery UI CDN -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <!-- Leaflet CDN -->
-    <script src="
-    https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js
-    "></script>
-    <link href="
-    https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css
-    " rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/fcc5b5924a.js" crossorigin="anonymous"></script>
     <!-- CSS link -->
     <link rel="stylesheet" href="./Assets/styles.css">
 
@@ -24,7 +24,57 @@
 <body>
     
 
-
+    <!-- Section including map and recommended route -->
+    <div id="generatedRoute" class="box container is-flex is-flex-direction-column is-justify-content-center">
+        
+        <h2 class="title is-2 mb-6 is-align-self-center">Optimised Route</h2>
+        <div>
+            <div class="columns mb-5">
+                <div id="map" class="column is-two-thirds"></div>
+                <div class="column is-two-fifths">
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from A -> B</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from B -> C</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from C -> D</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from D -> E</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                </div>
+            
+            </div>
+            <nav class="level is-mobile">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Kilometers</p>
+                        <p class="title">3,456</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Vehicle</p>
+                        <p class="title">Bike</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Stops</p>
+                        <p class="title">4</p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
