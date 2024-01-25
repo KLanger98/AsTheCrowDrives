@@ -132,6 +132,126 @@ function loadPreviousSearches(){
 
 }
 
+//Example of how location data will be organised
+// {
+//             id: "hamburg",
+//             name: "visit_hamburg",
+//             address: {
+//             location_id: "hamburg",
+//             lon: 9.999,
+//             lat: 53.552
+//             }
+//         }
+
+//Function to fetch the optimized data 
+let sumLocations = [
+    {
+            id: "berlin",
+            name: "visit_berlin",
+            address: {
+            location_id: "berlin",
+            lon: 13.406,
+            lat: 52.537
+            }
+        },
+    {
+            id: "hamburg",
+            name: "visit_hamburg",
+            address: {
+            location_id: "hamburg",
+            lon: 9.999,
+            lat: 53.552
+            }
+        },
+        {
+            id: "munich",
+            name: "visit_munich",
+            address: {
+            location_id: "munich",
+            lon: 11.570,
+            lat: 48.145
+            }
+        },
+        {
+            id: "cologne",
+            name: "visit_cologne",
+            address: {
+            location_id: "cologne",
+            lon: 6.957,
+            lat: 50.936
+            }
+        },
+        {
+            id: "frankfurt",
+            name: "visit_frankfurt",
+            address: {
+            location_id: "frankfurt",
+            lon: 8.670,
+            lat: 50.109
+            }
+        }
+]
+
+let doIReturn = true;
+
+let daVehicle = "car"
+fetchOptimizedRoute(sumLocations, doIReturn, daVehicle);
+
+function fetchOptimizedRoute(locations, returnToOrigin, vehicleType){
+
+
+
+    let organisedData = {
+        vehicles: [
+            {
+                vehicle_id: 'my_vehicle',
+                type_id: vehicleType,
+                start_address: {
+                    location_id: locations[0].name,
+                    lon: locations[0].longitude,
+                    lat: locations[0].latitude
+                },
+                return_to_depot: returnToOrigin
+            }
+        ],
+        services: []
+    }
+
+
+    for(let i = 1; i < locations.length; i++){
+        organisedData.services.push(locations[i])
+    }
+
+    console.log(organisedData)
+
+    let fetchUrl = "https://graphhopper.com/api/1/vrp?key=4b8e0eda-a757-4baf-b8fd-63dcc8b828fe";
+
+
+    fetch(fetchUrl, {
+        method: 'POST', //GET is the default.
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(organisedData)
+    })
+        .then(response => {
+            if(!response.ok){
+
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error("Error", error)
+        })
+
+}
+
+//console.log(fetchOptimizedRoute())
+fetchOptimizedRoute(sumLocations, doIReturn, daVehicle);
+
 loadPreviousSearches();
 //Set up map
 
