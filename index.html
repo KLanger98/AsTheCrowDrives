@@ -21,10 +21,32 @@
 </head>
 <body>
     <!-- TODO Add header with navbar -->
-    <!-- TODO Add container for input form -->
-    <!-- TODO: Add container for included locations -->
-    <!-- TODO: Add Container for generate route button -->
     
+    <section class="section">
+        <div class="container">
+          <h1 class="title">Where are you heading to?</h1>
+          <form id="locationForm">
+            <div class="field has-addons">
+            <div class="control is-expanded">
+                <input class="input" type="text" id="locationInput" placeholder="Type a location (up to 5)">
+              </div>
+              <div class="control">
+                <a class="button is-info" onclick="addLocation()">Submit</a>
+              </div>
+            </div>
+          </form>
+          
+          <section class="section">
+            <div id="submittedLocations" class="submitted-locations columns is-multiline">
+            <!-- Dynamically added locations are here -->
+            </div>
+          </section>
+          
+          <div class="generateBtn is-pulled-right">
+          <button class="button is-info" onclick="generateLocations()">Generate Route</button>
+          </div>
+        </div>
+      </section>
 
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
