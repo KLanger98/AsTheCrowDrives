@@ -1,3 +1,4 @@
+const apiKey = "f2d980e6-252a-4c7f-afce-e9ba8b9e15ff";
 
 
 
@@ -62,7 +63,27 @@ function addLocation() {
             updateSubmittedLocations(); // Update the displayed locations
         }
     }
-} 
+}
+
+async function fetchSearchHits(title) {
+    const query = new URLSearchParams({
+        q: title,
+        locale: 'en',
+        limit: '5',
+        reverse: 'false',
+        debug: 'false',
+        provider: 'default',
+        key: apiKey
+      }).toString();
+    const resp = await fetch(
+    `https://graphhopper.com/api/1/geocode?${query}`,
+    {method: 'GET'}
+  );
+  
+  const data = await resp.text();
+  console.log(data);
+}
+fetchSearchHits("london");
 
 function updateSubmittedLocations() {
     const submittedLocationsContainer = document.getElementById('submittedLocations');
