@@ -40,6 +40,49 @@ let exampleObjects = [
     }
 ]
 
+// Array to store submitted locations
+let locations = [];
+
+// Function to add a location to the array
+function addLocation() {
+
+    // Check if the number of locations is less than 5
+    if (locations.length < 5) {
+        const locationInput = document.getElementById('locationInput');
+
+        // Trim and convert the location to uppercase
+        const location = locationInput.value.trim().toUpperCase();
+
+        // Check if the location is not empty
+        if (location !== '') {
+
+            // Add the location to the array
+            locations.push(location);
+            locationInput.value = ''; // Clear the input field
+            updateSubmittedLocations(); // Update the displayed locations
+        }
+    }
+} 
+
+function updateSubmittedLocations() {
+    const submittedLocationsContainer = document.getElementById('submittedLocations');
+    submittedLocationsContainer.innerHTML = ''; // Clear existing content
+
+    // Loop through each location in the array
+    locations.forEach((location, index) => {
+        const locationElement = document.createElement('div');
+        locationElement.classList.add('column', 'is-half', 'is-one-third-desktop');
+        locationElement.innerHTML = `<div class="notification">${index + 1}. ${location}</div>`;
+        submittedLocationsContainer.appendChild(locationElement); // Add location to the container
+    });
+}
+
+// Function to generate something based on the submitted locations
+function generateLocations() {
+
+    // We will add something else later .......
+    alert('Generating locations: ' + JSON.stringify(locations));
+}
 
 //Function to change which tab is active in the previous search panel
 function changeActiveTab(event){
@@ -98,3 +141,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+
+

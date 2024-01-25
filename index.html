@@ -9,22 +9,49 @@
     <!-- jQuery UI CDN -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <!-- Leaflet CDN -->
-    <link href="
-        https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css
-        " rel="stylesheet">
-    <script src="
-    https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js
-    "></script>
+    <link href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" rel="stylesheet">
     <!-- CSS link -->
     <link rel="stylesheet" href="./Assets/styles.css">
-
 </head>
 <body>
     <!-- TODO Add header with navbar -->
-    <!-- TODO Add container for input form -->
-    <!-- TODO: Add container for included locations -->
-    <!-- TODO: Add Container for generate route button -->
     
+    <section class="section">
+        <div class="container">
+            <!-- Bulma box to enclose the heading and search bar -->
+            <div class="box">
+                <h1 class="title">Where are you heading to?</h1>
+                <form id="locationForm">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input class="input" type="text" id="locationInput" placeholder="Type a location (up to 5)">
+                        </div>
+                        <div class="control">
+                            <a class="button is-info" onclick="addLocation()">Submit</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="submittedLocations" class="submitted-locations columns is-multiline">
+            <!-- Dynamically added locations are here -->
+            </div>
+            <!-- Bulma box for the generate button -->
+            <div class="box">
+                <div class="columns is-vcentered is-mobile">
+                    <div class="column is-12">
+                        <!-- Centered generate button -->
+                        <label class="checkbox">
+                          <input type="checkbox" id="roundRouteCheckbox">
+                          Round Route
+                      </label>
+                        <div class="has-text-centered">
+                            <button class="button is-info is-large" onclick="generateLocations()">Generate Route</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
