@@ -81,7 +81,6 @@ async function fetchSearchHits(title) {
   );
   
   const data = await resp.text();
-  console.log(data);
 }
 fetchSearchHits("london");
 
@@ -165,72 +164,20 @@ function loadPreviousSearches(){
 //         }
 
 //Function to fetch the optimized data 
-let sumLocations = [
-    {
-            id: "berlin",
-            name: "visit_berlin",
-            address: {
-            location_id: "berlin",
-            lon: 13.406,
-            lat: 52.537
-            }
-        },
-    {
-            id: "hamburg",
-            name: "visit_hamburg",
-            address: {
-            location_id: "hamburg",
-            lon: 9.999,
-            lat: 53.552
-            }
-        },
-        {
-            id: "munich",
-            name: "visit_munich",
-            address: {
-            location_id: "munich",
-            lon: 11.570,
-            lat: 48.145
-            }
-        },
-        {
-            id: "cologne",
-            name: "visit_cologne",
-            address: {
-            location_id: "cologne",
-            lon: 6.957,
-            lat: 50.936
-            }
-        },
-        {
-            id: "frankfurt",
-            name: "visit_frankfurt",
-            address: {
-            location_id: "frankfurt",
-            lon: 8.670,
-            lat: 50.109
-            }
-        }
-]
 
-let doIReturn = true;
-
-let daVehicle = "car"
 fetchOptimizedRoute(sumLocations, doIReturn, daVehicle);
 
+
+//Fetch the optimized route once provided with the location, vehicle type and return to origin
 function fetchOptimizedRoute(locations, returnToOrigin, vehicleType){
-
-
-
     let organisedData = {
         vehicles: [
             {
                 vehicle_id: 'my_vehicle',
-                type_id: vehicleType,
                 start_address: {
                     location_id: locations[0].name,
-                    lon: locations[0].longitude,
-                    lat: locations[0].latitude
+                    lon: locations[0].address.lon,
+                    lat: locations[0].address.lat
                 },
                 return_to_depot: returnToOrigin
             }
@@ -270,9 +217,7 @@ function fetchOptimizedRoute(locations, returnToOrigin, vehicleType){
 
 }
 
-//console.log(fetchOptimizedRoute())
-fetchOptimizedRoute(sumLocations, doIReturn, daVehicle);
-
+ 
 loadPreviousSearches();
 //Set up map
 
