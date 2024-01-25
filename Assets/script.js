@@ -81,7 +81,6 @@ async function fetchSearchHits(title) {
   );
   
   const data = await resp.text();
-  console.log(data);
 }
 fetchSearchHits("london");
 
@@ -153,6 +152,72 @@ function loadPreviousSearches(){
 
 }
 
+//Example of how location data will be organised
+// {
+//             id: "hamburg",
+//             name: "visit_hamburg",
+//             address: {
+//             location_id: "hamburg",
+//             lon: 9.999,
+//             lat: 53.552
+//             }
+//         }
+
+//Function to fetch the optimized data 
+
+fetchOptimizedRoute(sumLocations, doIReturn, daVehicle);
+
+
+//Fetch the optimized route once provided with the location, vehicle type and return to origin
+function fetchOptimizedRoute(locations, returnToOrigin, vehicleType){
+    let organisedData = {
+        vehicles: [
+            {
+                vehicle_id: 'my_vehicle',
+                start_address: {
+                    location_id: locations[0].name,
+                    lon: locations[0].address.lon,
+                    lat: locations[0].address.lat
+                },
+                return_to_depot: returnToOrigin
+            }
+        ],
+        services: []
+    }
+
+
+    for(let i = 1; i < locations.length; i++){
+        organisedData.services.push(locations[i])
+    }
+
+    console.log(organisedData)
+
+    let fetchUrl = "https://graphhopper.com/api/1/vrp?key=4b8e0eda-a757-4baf-b8fd-63dcc8b828fe";
+
+
+    fetch(fetchUrl, {
+        method: 'POST', //GET is the default.
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(organisedData)
+    })
+        .then(response => {
+            if(!response.ok){
+
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error("Error", error)
+        })
+
+}
+
+ 
 loadPreviousSearches();
 //Set up map
 
