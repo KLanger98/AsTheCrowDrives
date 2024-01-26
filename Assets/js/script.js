@@ -1,50 +1,3 @@
-const apiKey = "f2d980e6-252a-4c7f-afce-e9ba8b9e15ff";
-
-
-// Array to store submitted locations
-let locations = [];
-
-// Function to add a location to the array
-function addLocation() {
-
-    // Check if the number of locations is less than 5
-    if (locations.length < 5) {
-        const locationInput = document.getElementById('locationInput');
-
-        // Trim and convert the location to uppercase
-        const location = locationInput.value.trim().toUpperCase();
-
-        // Check if the location is not empty
-        if (location !== '') {
-
-            // Add the location to the array
-            locations.push(location);
-            locationInput.value = ''; // Clear the input field
-            updateSubmittedLocations(); // Update the displayed locations
-        }
-    }
-}
-
-
-async function fetchSearchHits(title) {
-    const query = new URLSearchParams({
-        q: title,
-        locale: 'en',
-        limit: '5',
-        reverse: 'false',
-        debug: 'false',
-        provider: 'default',
-        key: apiKey
-      }).toString();
-    const resp = await fetch(
-    `https://graphhopper.com/api/1/geocode?${query}`,
-    {method: 'GET'}
-  );
-  
-  const data = await resp.text();
-}
-fetchSearchHits("london");
-
 function updateSubmittedLocations() {
     const submittedLocationsContainer = document.getElementById('submittedLocations');
     submittedLocationsContainer.innerHTML = ''; // Clear existing content
@@ -175,8 +128,6 @@ function loadPreviousSearches(){
 
 }
 
-
-
 //Fetch the optimized route once provided with the location, vehicle type and return to origin
 function fetchOptimizedRoute(routeInfo){
     let vehicleTypeInfo = JSON.parse(routeInfo.vehicleType);
@@ -262,7 +213,7 @@ function fetchOptimizedRoute(routeInfo){
 //fetchOptimizedRoute(routeInfo);
  
 loadPreviousSearches();
-//Set up map
+// Set up map
 
 var map = L.map('map').setView([51.505, -0.09], 13);
 
