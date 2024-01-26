@@ -13,7 +13,7 @@
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/fcc5b5924a.js" crossorigin="anonymous"></script>
     <!-- CSS link -->
-    <link rel="stylesheet" href="./Assets/styles.css">
+    <link rel="stylesheet" href="./Assets/css/styles.css">
 </head>
 <body>
     <!-- TODO Add header with navbar -->
@@ -24,41 +24,33 @@
                 <img src="Assets/Images/Crow_Icon.png" style="max-height: 80px">
             </a>
         </div>
-        
         <nav class="navbar is-flex is-justify-content-center" style="background-color: #004e89;">
             <div class="navbar" style="background-color: #004e89;">
                 <ul class="is-flex is-justify-content-center">
-                    <li><a href="./about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
+                    <li><a href="./Assets/html/about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
                     <li><a href="./index.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Tool</a></li>
-                    <li><a href="./results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
+                    <li><a href="./Assets/html/results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    
-
-    <section class="section">
+    <section class="section">   
         <div class="container">
-            <!-- Bulma box to enclose the heading and search bar -->
             <div class="box">
                 <h1 class="title">Where are you heading to?</h1>
-                <form id="locationForm">
-                    <div class="field has-addons">
+                    <form id="locationForm">
                         <div class="control is-expanded">
-                            <input class="input" type="text" id="locationInput" placeholder="Type a location (up to 5)">
+                            <div id="autocomplete-container">
+                            </div>
                         </div>
-                        <div class="control">
-                            <a class="button is-info" onclick="addLocation()">Submit</a>
-                        </div>
-                    </div>
-                </form>
+                            <div class="control has-text-centered">
+                                <a class="button is-info mt-4" onclick="addLocation()">Submit</a>
+                            </div>
+                    </form>        
             </div>
-            <div id="submittedLocations" class="submitted-locations columns is-multiline">
-            <!-- Dynamically added locations are inserted here -->
-            </div>
-            <!-- Bulma box for the generate button -->
-            <div class="box">
+        <div class="box">
                 <div class="columns is-vcentered is-mobile">
+                    </div>
                     <div class="column is-12">
                         <h2 class="title is-3">Route details</h2>
                         <!-- Radio buttons to select route type -->
@@ -116,6 +108,7 @@
     <!-- CDN for jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Link to local Javascript file -->
-    <script src="./Assets/script.js"></script>
+    <script src="./Assets/js/autocomplete.js"></script>
+    <script src="./Assets/js/script.js"></script>
 </body>
 </html>
