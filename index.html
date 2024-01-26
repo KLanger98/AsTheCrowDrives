@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <!-- Leaflet CDN -->
     <link href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/fcc5b5924a.js" crossorigin="anonymous"></script>
     <!-- CSS link -->
     <link rel="stylesheet" href="./Assets/styles.css">
 </head>
@@ -26,9 +28,9 @@
         <nav class="navbar is-flex is-justify-content-center" style="background-color: #004e89;">
             <div class="navbar" style="background-color: #004e89;">
                 <ul class="is-flex is-justify-content-center">
-                    <li><a href="about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
-                    <li><a href="tool.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Tool</a></li>
-                    <li><a href="results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
+                    <li><a href="./about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
+                    <li><a href="./index.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Tool</a></li>
+                    <li><a href="./results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
                 </ul>
             </div>
         </nav>
@@ -52,19 +54,55 @@
                 </form>
             </div>
             <div id="submittedLocations" class="submitted-locations columns is-multiline">
-            <!-- Dynamically added locations are here -->
+            <!-- Dynamically added locations are inserted here -->
             </div>
             <!-- Bulma box for the generate button -->
             <div class="box">
                 <div class="columns is-vcentered is-mobile">
                     <div class="column is-12">
-                        <!-- Centered generate button -->
-                        <label class="checkbox">
-                          <input type="checkbox" id="roundRouteCheckbox">
-                          Round Route
-                      </label>
+                        <h2 class="title is-3">Route details</h2>
+                        <!-- Radio buttons to select route type -->
+                        <div class="control" id="routeTypeSelect">
+                            <label class="radio">
+                                <input type="radio" id="roundTripCheck" name="routeType" checked>
+                                Round-Trip
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="routeType">
+                                One-Way
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </label>
+                        </div>
+                        <!-- Radio Buttons to select mode of transport -->
+                        <h4 class="title is-6">Mode of transport:</h4>
+                        <div class="control" id="transportModeSelect">
+                            <label class="radio">
+                                <input type="radio" name="vehicleType" checked data-transport="my-car" data-icon="fa-solid fa-car-side"
+                                data-vehicleDesc='{"type_id":"my-car","profile":"car"}'>
+                                Car
+                                <i class="fa-solid fa-car-side"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="vehicleType" data-transport="my-bike" data-icon="fa-solid fa-bicycle"
+                                data-vehicleDesc='{"type_id":"my-bike","profile":"bike"}'>
+                                Bike
+                                
+                                <i class="fa-solid fa-bicycle"></i>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="vehicleType" data-transport="my-foot" data-icon="fa-solid fa-person-walking"
+                                data-vehicleDesc='{"type_id":"my-foot","profile":"foot"}'>
+                                Walk
+                                <i class="fa-solid fa-person-walking"></i>
+                            </label>
+                        </div>
+                        <div class="control is-expanded">
+                            <h3 class="title is-4">Name of route</h3>
+                            <input class="input" type="text" id="routeTitle" placeholder="i.e. 'Rome', 'Melbourne Holiday', 'Bike ride'">
+                        </div>
                         <div class="has-text-centered">
-                            <button class="button is-info is-large" onclick="generateLocations()">Generate Route</button>
+                            <button class="button is-info is-large mt-6" onclick="launchOptimisationRequest()">Generate Route</button>
                         </div>
                     </div>
                 </div>
