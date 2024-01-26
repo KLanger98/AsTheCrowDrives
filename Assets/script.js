@@ -1,46 +1,6 @@
 const apiKey = "f2d980e6-252a-4c7f-afce-e9ba8b9e15ff";
 
 
-
-let exampleObjects = [
-    {
-        transportMode: "Car",
-        nameOfRoute: "Berlin",
-        totalStops: 5,
-        icon: "fa-solid fa-car"
-    },
-    {
-        transportMode: "Bike",
-        nameOfRoute: "Rome",
-        totalStops: 5,
-        icon: "fa-solid fa-bicycle"
-    },
-    {
-        transportMode: "Walk",
-        nameOfRoute: "Amsterdam",
-        totalStops: 5,
-        icon: "fa-solid fa-person-walking"
-    },
-    {
-        transportMode: "Walk",
-        nameOfRoute: "Amsterdam",
-        totalStops: 5,
-        icon: "fa-solid fa-person-walking"
-    },
-    {
-        transportMode: "Walk",
-        nameOfRoute: "Amsterdam",
-        totalStops: 5,
-        icon: "fa-solid fa-person-walking"
-    },
-    {
-        transportMode: "Walk",
-        nameOfRoute: "Amsterdam",
-        totalStops: 5,
-        icon: "fa-solid fa-person-walking"
-    }
-]
-
 // Array to store submitted locations
 let locations = [];
 
@@ -64,6 +24,7 @@ function addLocation() {
         }
     }
 }
+
 
 async function fetchSearchHits(title) {
     const query = new URLSearchParams({
@@ -93,33 +54,92 @@ function updateSubmittedLocations() {
         const locationElement = document.createElement('div');
         locationElement.classList.add('column', 'is-half', 'is-one-third-desktop');
         locationElement.innerHTML = `<div class="notification">${index + 1}. ${location}</div>`;
-        submittedLocationsContainer.appendChild(locationElement); // Add location to the container
+        submittedLocationsContainer.appendChild(locationElement); 
+        // Add location to the container
     });
 }
+//This is just an example array for locations
+let sumLocations =  [{
+     "id": "hamburg",
+     "name": "visit_hamburg",
+     "address": {
+       "location_id": "hamburg",
+       "lon": 9.999,
+       "lat": 53.552
+     }
+   },
+   {
+     "id": "munich",
+     "name": "visit_munich",
+     "address": {
+       "location_id": "munich",
+       "lon": 11.570,
+       "lat": 48.145
+     }
+   },
+   {
+     "id": "cologne",
+     "name": "visit_cologne",
+     "address": {
+       "location_id": "cologne",
+       "lon": 6.957,
+       "lat": 50.936
+     }
+   },
+   {
+     "id": "frankfurt",
+     "name": "visit_frankfurt",
+     "address": {
+       "location_id": "frankfurt",
+       "lon": 8.670,
+       "lat": 50.109
+     }
+   }]
 
-// Function to generate something based on the submitted locations
-function generateLocations() {
+// Function to organise all the provided data so we can call the API
+function launchOptimisationRequest() {
+    //Fetch inputted data
+    let routeName = $('#routeTitle').val();
+    //listOfLocations needs to be changed
+    let listOfLocations = sumLocations;
+    let vehicleName = $('input[name="vehicleType"]:checked').attr("data-transport");
+    let vehicleIcon = $('input[name="vehicleType"]:checked').attr("data-icon");
+    let vehicleType = $('input[name="vehicleType"]:checked').attr("data-vehicleDesc");
 
-    // We will add something else later .......
-    alert('Generating locations: ' + JSON.stringify(locations));
+    
+
+    //Store all data inside an object
+    let routeInfo = {
+        routeTitle: routeName,
+        locations: listOfLocations,
+        returnToStart: true,
+        vehicle: vehicleName,
+        vehicleIcon: vehicleIcon,
+        vehicleType: vehicleType
+    }
+
+    if(!$('#roundTripCheck').is(':checked')){
+        routeInfo.returnToStart = false;
+    }
+
+    console.log(routeInfo)
+    
+    fetchOptimizedRoute(routeInfo)
 }
 
 //Function to change which tab is active in the previous search panel
 function changeActiveTab(event){
     let tabs = $('.panel-tabs').children();
-
     for(let i = 0; i < tabs.length; i++){
         $(tabs[i]).removeClass();
     }
-
     $(event.target).addClass('is-active')
-
     loadPreviousSearches();
 }
 
 //Function used to load previous searches saved in local storage and display them in the previous search panel
 function loadPreviousSearches(){
-    let previousSearches = exampleObjects;
+    let previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
     let previousSearchDiv = $('#previousSearchContent');
     previousSearchDiv.empty();
 
@@ -134,17 +154,20 @@ function loadPreviousSearches(){
     
     //Load previous searches based on tab selected or search box
     for(let i = 0; i < previousSearches.length; i++){
-        if(activeTab !== "All"){
-            if(previousSearches[i].transportMode !== activeTab){
-                continue;
-            }
-        }
+         if(activeTab !== "All"){
+
+            console.log(previousSearches[i])
+             if(previousSearches[i].vehicleProfile !== activeTab.toLowerCase()){
+                 continue;
+             }
+         }
         
         let span = $('<span>').addClass('panel-icon');
-        let icon = $('<i>').addClass(previousSearches[i].icon);
+        let icon = $('<i>').addClass(previousSearches[i].vehicleIcon);
         span.append(icon);
-        let anchor = $('<a>').addClass('panel-block')
-        let text = $('<p>').text(previousSearches[i].nameOfRoute);
+        let anchor = $('<a>').addClass('panel-block');
+        anchor.attr("data-all", previousSearches[i])
+        let text = $('<p>').text(previousSearches[i].routeName);
         let input = $('<input>').attr('type', 'checkbox').addClass('is-right');
         anchor.append(span, text, input);
         previousSearchDiv.append(anchor);
@@ -152,45 +175,42 @@ function loadPreviousSearches(){
 
 }
 
-//Example of how location data will be organised
-// {
-//             id: "hamburg",
-//             name: "visit_hamburg",
-//             address: {
-//             location_id: "hamburg",
-//             lon: 9.999,
-//             lat: 53.552
-//             }
-//         }
-
-//Function to fetch the optimized data 
-
-fetchOptimizedRoute(sumLocations, doIReturn, daVehicle);
 
 
 //Fetch the optimized route once provided with the location, vehicle type and return to origin
-function fetchOptimizedRoute(locations, returnToOrigin, vehicleType){
+function fetchOptimizedRoute(routeInfo){
+    let vehicleTypeInfo = JSON.parse(routeInfo.vehicleType);
+
     let organisedData = {
         vehicles: [
             {
                 vehicle_id: 'my_vehicle',
+                type_id: routeInfo.vehicle,
                 start_address: {
-                    location_id: locations[0].name,
-                    lon: locations[0].address.lon,
-                    lat: locations[0].address.lat
+                    location_id: routeInfo.locations[0].name,
+                    lon: routeInfo.locations[0].address.lon,
+                    lat: routeInfo.locations[0].address.lat
                 },
-                return_to_depot: returnToOrigin
+                return_to_depot: routeInfo.returnToOrigin
             }
         ],
-        services: []
+        vehicle_types: [
+            {
+                profile: vehicleTypeInfo.profile,
+                type_id: vehicleTypeInfo.type_id
+            }
+        ],
+        services: [],
+        configuration: {
+            routing: {
+                calc_points: true
+            }
+        }
     }
 
-
-    for(let i = 1; i < locations.length; i++){
-        organisedData.services.push(locations[i])
+    for(let i = 1; i < routeInfo.locations.length; i++){
+        organisedData.services.push(routeInfo.locations[i])
     }
-
-    console.log(organisedData)
 
     let fetchUrl = "https://graphhopper.com/api/1/vrp?key=4b8e0eda-a757-4baf-b8fd-63dcc8b828fe";
 
@@ -210,13 +230,36 @@ function fetchOptimizedRoute(locations, returnToOrigin, vehicleType){
         })
         .then(data => {
             console.log(data);
+            //load all necessary data into an object to be saved to local
+            let newData = {
+                routeName: routeInfo.routeTitle,
+                travelDistance: data.solution.distance,
+                numberOfRoutes: data.solution.routes[0].activities.length,
+                routes: data.solution.routes[0].activities,
+                timeToTravel: data.solution.max_operation_time,
+                vehicle: data.solution.routes[0].vehicle_id,
+                vehicleIcon: routeInfo.vehicleIcon,
+                vehicleType: routeInfo.vehicle,
+                vehicleProfile: vehicleTypeInfo.profile
+            };
+            //Store into local
+            let storeInLocal = JSON.parse(localStorage.getItem('previousSearches'));
+
+            if(!storeInLocal){
+                storeInLocal = [newData];
+                localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
+            } else{
+                storeInLocal.push(newData);
+                localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
+            }
+            loadPreviousSearches();
         })
         .catch(error => {
             console.error("Error", error)
         })
-
 }
 
+//fetchOptimizedRoute(routeInfo);
  
 loadPreviousSearches();
 //Set up map
