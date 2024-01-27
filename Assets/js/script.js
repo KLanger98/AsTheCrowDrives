@@ -90,15 +90,24 @@ function changeActiveTab(event){
     loadPreviousSearches();
 }
 
+//On change event for previous search input box to 
+$('#searchPrev').on('keyup', function(){
+    loadPreviousSearches();
+})
+
+
+
+
 //Function used to load previous searches saved in local storage and display them in the previous search panel
 function loadPreviousSearches(){
     let previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
     let previousSearchDiv = $('#previousSearchContent');
     previousSearchDiv.empty();
+    let searchTerm = ""
 
     //Check if search term has been added
     if($('#searchPrev').val()){
-        let searchTerm = $('#searchPrev').val();
+         searchTerm = $('#searchPrev').val();
     }
     
     //Check which tab is active
@@ -107,25 +116,48 @@ function loadPreviousSearches(){
     
     //Load previous searches based on tab selected or search box
     for(let i = 0; i < previousSearches.length; i++){
-         if(activeTab !== "All"){
-
-            console.log(previousSearches[i])
-             if(previousSearches[i].vehicleProfile !== activeTab.toLowerCase()){
-                 continue;
-             }
-         }
+        if(activeTab !== "All"){
+            if(previousSearches[i].vehicleProfile !== activeTab.toLowerCase()){
+                continue;
+            }
+        }
+        console.log(previousSearches[i].routeName, searchTerm)
+        if(!previousSearches[i].routeName.toLowerCase().includes(searchTerm.toLowerCase())){
+            continue;
+        }
         
+        let div = $('<div>')
         let span = $('<span>').addClass('panel-icon');
         let icon = $('<i>').addClass(previousSearches[i].vehicleIcon);
         span.append(icon);
-        let anchor = $('<a>').addClass('panel-block');
+        let anchor = $('<a>').addClass('panel-block is-flex is-justify-content-space-between').attr('id', 'prevSearchLi')
         anchor.attr("data-all", previousSearches[i])
         let text = $('<p>').text(previousSearches[i].routeName);
-        let input = $('<input>').attr('type', 'checkbox').addClass('is-right');
-        anchor.append(span, text, input);
+        let button = $('<button>').addClass('button is-danger').text('Remove').attr('id', "removePrevious").on('click', removeSearch);
+        div.append(span, text)
+        anchor.append(div, button);
         previousSearchDiv.append(anchor);
     }
 
+
+}
+
+
+//Delete a selected previous search
+function removeSearch(event){
+    let removeText = $(event.target).siblings('div').children('p').text();
+
+    let previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
+
+    for(let i = 0; i < previousSearches.length; i++){
+        if(previousSearches[i].routeName === removeText){
+            previousSearches.splice(i, 1);
+        }
+    }
+    
+    localStorage.setItem('previousSearches', JSON.stringify(previousSearches));
+
+    loadPreviousSearches();
 }
 
 //Fetch the optimized route once provided with the location, vehicle type and return to origin
