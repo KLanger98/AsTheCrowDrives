@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As The Crow Drives</title>
+    <!-- Bulma CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- jQuery UI CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/fcc5b5924a.js" crossorigin="anonymous"></script>
+  <!--Leaflet CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- CSS link -->
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="title is-1 has-text-white" style="background-color: #004e89;">
+        <div class="is-flex is-justify-content-center">
+            <h1 class="has-text-centered"> As The Crow Drives </h1>
+            <a class="navbar-item">
+                <img src="../Images/Crow_Icon.png" style="max-height: 80px">
+            </a>
+        </div>
+    
+        <nav class="navbar is-flex is-justify-content-center" style="background-color: #004e89;">
+            <div class="navbar" style="background-color: #004e89;">
+                <ul class="is-flex is-justify-content-center">
+                    <li><a href="./about.html" class="navbar-item title is-4 has-text-white has-text-centered"
+                            style="background-color: #004e89;">About</a></li>
+                    <li><a href="../../index.html" class="navbar-item title is-4 has-text-white has-text-centered"
+                            style="background-color: #004e89;">Tool</a></li>
+                    <li><a href="./results.html" class="navbar-item title is-4 has-text-white has-text-centered"
+                            style="background-color: #004e89;">Result</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Previous search navigator -->
+    <nav class="panel is-info container has-background-white">
+        <p class="panel-heading">
+            Previous Searches
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search" id="searchPrev">
+                <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </p>
+        </div>
+        <p class="panel-tabs">
+            <a class="is-active" onclick="changeActiveTab(event)">All</a>
+            <a onclick="changeActiveTab(event)">Car</a>
+            <a onclick="changeActiveTab(event)">Bike</a>
+            <a onclick="changeActiveTab(event)">Walk</a>
+        </p>
+        <div id="previousSearchContent">
+        </div>
+        <!-- <div class="panel-block  is-white">
+            <button class="button is-link is-outlined is-fullwidth">
+                Delete Selected Routes
+            </button>
+        </div> -->
+    </nav>
+    
+
+    <!-- Section including map and recommended route -->
+    <div id="generatedRoute" class="box container is-flex is-flex-direction-column is-justify-content-center">
+        
+        <h2 class="title is-2 mb-6 is-align-self-center">Optimised Route</h2>
+        <div>
+            <div class="columns mb-5">
+                <div id="map" class="column is-two-thirds"></div>
+                <div class="column is-two-fifths">
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from A -> B</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from B -> C</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from C -> D</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                    <div class="box is-flex is-justify-content-space-between ">
+                        <h6 class="title is-6">Go from D -> E</h6>
+                        <button class="button is-info"><i class="fa-solid fa-location-dot"></i></button>
+                    </div>
+                </div>
+            
+            </div>
+            <nav class="level is-mobile">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Kilometers</p>
+                        <p class="title">3,456</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Vehicle</p>
+                        <p class="title">Bike</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Stops</p>
+                        <p class="title">4</p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- CDN for jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- CDN for jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Link to local Javascript file -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
