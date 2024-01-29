@@ -1,44 +1,33 @@
-function addressAutocomplete(containerElement, callback, options) {
-    var inputElement = $('<input>', {
-        type: 'text',
-        placeholder: options.placeholder
-    }).addClass('input');
-
-    containerElement.append(inputElement);
+function addressAutocomplete() {
+    let autoCompleteContainer = $('#autocomplete-container');
 
     var selectedItemsContainer = $('<div>', {
         class: 'selected-items-container'
     });
-    containerElement.append(selectedItemsContainer);
+    autoCompleteContainer.append(selectedItemsContainer);
 
-    var currentItems;
     var currentPromiseReject;
 
-    inputElement.on('input', function () {
+    let inputField = $('#inputLocation')
+    inputField.on('input', function () {
         var currentValue = $(this).val();
-        closeDropDownList();
+        $('.autocomplete-items').empty()
 
         if (currentPromiseReject) {
             currentPromiseReject({
                 canceled: true
             });
         }
-
         if (!currentValue) {
             return false;
         }
 
-        
         var promise = new Promise((resolve, reject) => {
             currentPromiseReject = reject;
 
             const apiKey = "52c455d9879843aea262c6319e127a66";
             let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&limit=5&apiKey=${apiKey}`;
 
-
-            if (options.type) {
-                url += `&type=${options.type}`;
-            }
             $.get(url)
                 .done((data) => resolve(data))
                 .fail((err) => reject(err));
@@ -46,12 +35,11 @@ function addressAutocomplete(containerElement, callback, options) {
 
         promise.then(
             (data) => {
-                currentItems = data.features;
                 var autocompleteItemsElement = $('<div>', {
                     class: 'autocomplete-items'
                 });
 
-                containerElement.prepend(autocompleteItemsElement);
+                autoCompleteContainer.prepend(autocompleteItemsElement);
 
                 data.features.forEach((feature, index) => {
                     var itemElement = $('<div>', {
@@ -59,48 +47,32 @@ function addressAutocomplete(containerElement, callback, options) {
                         html: feature.properties.formatted
                     });
 
-                    // just testing up to 2 locations
+                    //Create a click function that saves the necessary data inside a div and appends that below the search box
                     itemElement.on('click', function () {
                         var coordinates = feature.geometry.coordinates;
-                    
                         // Save latitude and longitude data in hidden input fields
-                        for (let i = 1; i <= 8; i++) {
-                            if (!$("#coordinates" + i).val()) {
-                                $("#coordinates" + i).val(JSON.stringify(coordinates));
-                    
-                                var selectedItem = $('<div>', {
+                        var selectedItem = $('<div>', {
                                     class: 'selected-item box is-small',
                                     html: feature.properties.formatted,
-                                    "data-latitude": "",
-                                    "data-longitude": ""
+                                    "data-lat-long": coordinates
                                     
-                                });
-                    
-                                var removeIcon = $('<span>', {
-                                    class: 'button is-small is-danger ml-2',
-                                }).append(
-                                    $('<i>', {
-                                        class: 'fa-solid fa-trash-can',                        
+                        });
+                        var removeIcon = $('<span>', {
+                            class: 'button is-small is-danger ml-2',
+                        }).append($('<i>', {
+                                        class: 'fa-solid fa-trash-can'      
                                     })
                                 );
-                    
                                 removeIcon.on('click', function () {
-                                    removeSelectedItemAt(selectedItem, index);
+                                    selectedItem.remove();
                                 });
                     
-                                selectedItem.append(removeIcon);
-                                selectedItemsContainer.append(selectedItem);
+                        selectedItem.append(removeIcon);
+                        selectedItemsContainer.append(selectedItem);
                     
-                                inputElement.val('');
-                                closeDropDownList();
-                    
-                                callback(currentItems[index]);
-                                break; // Exit the loop after adding the selected item
-                            }
-                        }
+                        inputField.val('');
+                        $('.autocomplete-items').empty();
                     }).css('cursor', 'pointer');
-                    
-                    
                     
                     autocompleteItemsElement.append(itemElement);
                 });
@@ -112,40 +84,6 @@ function addressAutocomplete(containerElement, callback, options) {
             }
         );
     });
-    function closeDropDownList() {
-        var autocompleteItemsElement = containerElement.find(".autocomplete-items");
-        if (autocompleteItemsElement.length) {
-            autocompleteItemsElement.remove();
-        }
-
-        focusedItemIndex = -1;
-    }  
-
-    function removeSelectedItemAt(selectedItem, index) {
-        var coordinatesInput = $("#coordinates" + (index + 1));
-    
-        selectedItem.hide();
-        coordinatesInput.val('');
-    }
-    
-    // $(document).on("click", function (e) {
-    //     if (e.target !== inputElement[0]) {
-    //         closeDropDownList();
-    //     } else if (!containerElement.find(".autocomplete-items").length) {
-    //         var event = new Event('input', {
-    //             bubbles: true,
-    //             cancelable: true
-    //         });
-    //         inputElement[0].dispatchEvent(event);
-    //     }
-    // });
 }
-
 // Initialize address autocomplete with the specified container, callback, and options
-addressAutocomplete($("#autocomplete-container"), (data) => {
-    if (data) {
-        console.log("Selected data:", data);
-    }
-}, {
-    placeholder: "Enter the address here (up to 8)"
-});
+addressAutocomplete();
