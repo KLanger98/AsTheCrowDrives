@@ -50,11 +50,13 @@ function addressAutocomplete() {
                     //Create a click function that saves the necessary data inside a div and appends that below the search box
                     itemElement.on('click', function () {
                         var coordinates = feature.geometry.coordinates;
+                        console.log(feature)
                         // Save latitude and longitude data in hidden input fields
                         var selectedItem = $('<div>', {
                                     class: 'selected-item box is-small',
                                     html: feature.properties.formatted,
-                                    "data-lat-long": coordinates
+                                    "data-lat-long": coordinates,
+                                    "data-cityName": feature.properties.city
                                     
                         });
                         var removeIcon = $('<span>', {
