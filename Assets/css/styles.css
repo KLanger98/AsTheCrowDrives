@@ -1,0 +1,40 @@
+
+body{
+    background-color: #EFEFD0;
+}
+
+#stops{
+    position: relative;
+    top: -95vh;
+    left: 80%;
+    z-index: 2;
+    width: 200px;
+}
+
+#progressBar{
+    visibility: hidden;
+}
+
+#mainMap{
+    height: 100vh;
+    z-index: 0;
+}
+#map{
+    height: 400px;
+    width: 400px;
+    border: 6px solid #1A659E;
+    margin-left: 100px;
+    margin-right: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+}
+
+.notification {
+    background-color: #F7C59F
+}
+
+/* Adjust padding for list items */
+ol {
+    list-style-position: inside;
+    padding-top: 5px;
+}
