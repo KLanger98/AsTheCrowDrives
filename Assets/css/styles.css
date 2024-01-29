@@ -18,8 +18,14 @@ body{
     background-color: #F7C59F
 }
 
-/* Adjust padding for list items */
-ol {
-    list-style-position: inside;
-    padding-top: 5px;
+#removePrevious{
+    display: none;
+}
+
+#prevSearchLi:hover > button{
+    display: block;
+}
+
+.selected-items-container {
+    padding-top: 20px;
 }
