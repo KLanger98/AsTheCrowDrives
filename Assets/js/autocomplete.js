@@ -1,14 +1,10 @@
 function addressAutocomplete(containerElement, callback, options) {
     var inputElement = $('<input>', {
         type: 'text',
-        placeholder: options.placeholder,
+        placeholder: options.placeholder
     }).addClass('input');
 
     containerElement.append(inputElement);
-
-    var clearButton = $('<div>', {
-        class: 'clear-button'
-    });
 
     var selectedItemsContainer = $('<div>', {
         class: 'selected-items-container'
@@ -29,11 +25,10 @@ function addressAutocomplete(containerElement, callback, options) {
         }
 
         if (!currentValue) {
-            clearButton.removeClass('visible');
             return false;
         }
 
-        clearButton.addClass('visible');
+        
         var promise = new Promise((resolve, reject) => {
             currentPromiseReject = reject;
 
@@ -75,7 +70,10 @@ function addressAutocomplete(containerElement, callback, options) {
                     
                                 var selectedItem = $('<div>', {
                                     class: 'selected-item box is-small',
-                                    html: feature.properties.formatted
+                                    html: feature.properties.formatted,
+                                    "data-latitude": "",
+                                    "data-longitude": ""
+                                    
                                 });
                     
                                 var removeIcon = $('<span>', {
@@ -94,7 +92,6 @@ function addressAutocomplete(containerElement, callback, options) {
                                 selectedItemsContainer.append(selectedItem);
                     
                                 inputElement.val('');
-                                clearButton.removeClass('visible');
                                 closeDropDownList();
                     
                                 callback(currentItems[index]);
@@ -131,17 +128,17 @@ function addressAutocomplete(containerElement, callback, options) {
         coordinatesInput.val('');
     }
     
-    $(document).on("click", function (e) {
-        if (e.target !== inputElement[0]) {
-            closeDropDownList();
-        } else if (!containerElement.find(".autocomplete-items").length) {
-            var event = new Event('input', {
-                bubbles: true,
-                cancelable: true
-            });
-            inputElement[0].dispatchEvent(event);
-        }
-    });
+    // $(document).on("click", function (e) {
+    //     if (e.target !== inputElement[0]) {
+    //         closeDropDownList();
+    //     } else if (!containerElement.find(".autocomplete-items").length) {
+    //         var event = new Event('input', {
+    //             bubbles: true,
+    //             cancelable: true
+    //         });
+    //         inputElement[0].dispatchEvent(event);
+    //     }
+    // });
 }
 
 // Initialize address autocomplete with the specified container, callback, and options
