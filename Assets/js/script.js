@@ -279,7 +279,7 @@ function loadOptimisedRoute(data){
     $('#travelTimeMain').text(totalHours + "H:" + remainingMinutes + "M");
     $('#stopsMain').text(data.routes.length);
     //Set map positioning
-    mainMap.setView([data.routes[0].address.lat, data.routes[0].address.lon], 7);
+    mainMap.setView([data.routes[0].address.lat, data.routes[0].address.lon], 8);
 
     let stops = $('#stops')
     stops.empty()
