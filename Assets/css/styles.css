@@ -19,6 +19,7 @@ body{
     height: 100vh;
     z-index: 0;
 }
+
 #map{
     height: 400px;
     width: 400px;
@@ -37,4 +38,15 @@ body{
 ol {
     list-style-position: inside;
     padding-top: 5px;
+}
+#removePrevious{
+    display: none;
+}
+
+#prevSearchLi:hover > button{
+    display: block;
+}
+
+.selected-items-container {
+    padding-top: 20px;
 }

@@ -52,6 +52,7 @@ let sumLocations =  [{
 // Function to organise all the provided data so we can call the API
 function launchOptimisationRequest() {
     //Fetch inputted data
+
     if(!$('#routeTitle').val()){
         $('#errorMsgDiv').append($('<p>').text('Route must have a name').css("color", "red"));
         return;
@@ -212,6 +213,9 @@ function fetchOptimizedRoute(routeInfo){
         body: JSON.stringify(organisedData)
     })
         .then(response => {
+            if(!response.ok){
+
+            }
             return response.json();
         })
         .then(data => {
@@ -224,13 +228,15 @@ function fetchOptimizedRoute(routeInfo){
                 cities: routeInfo.locations,
                 routes: data.solution.routes[0].activities,
                 routeLines: data.solution.routes[0].points,
+                routes: data.solution.routes[0].activities,
                 timeToTravel: data.solution.max_operation_time,
                 vehicle: data.solution.routes[0].vehicle_id,
                 vehicleIcon: routeInfo.vehicleIcon,
                 vehicleType: routeInfo.vehicle,
                 vehicleProfile: vehicleTypeInfo.profile,
                 lengthOfTravel: data.solution.completion_time,
-                totalDistance: data.solution.distance
+                totalDistance: data.solution.distance,
+                vehicleProfile: vehicleTypeInfo.profile
             };
             //Store into local
             let storeInLocal = JSON.parse(localStorage.getItem('previousSearches'));
@@ -336,9 +342,18 @@ loadPreviousSearches();
 
 
 var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
+//fetchOptimizedRoute(routeInfo);
+ 
+loadPreviousSearches();
+// Set up map
+
+var map = L.map('map').setView([51.505, -0.09], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
 }).addTo(mainMap);
+
+}).addTo(map);
 
