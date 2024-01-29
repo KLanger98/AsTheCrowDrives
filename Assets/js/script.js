@@ -52,6 +52,11 @@ let sumLocations =  [{
 // Function to organise all the provided data so we can call the API
 function launchOptimisationRequest() {
     //Fetch inputted data
+
+    if(!$('#routeTitle').val()){
+        $('#errorMsgDiv').append($('<p>').text('Route must have a name').css("color", "red"));
+        return;
+    }
     let routeName = $('#routeTitle').val();
     //listOfLocations needs to be changed
     let listOfLocations = sumLocations;
@@ -162,6 +167,8 @@ function removeSearch(event){
 
 //Fetch the optimized route once provided with the location, vehicle type and return to origin
 function fetchOptimizedRoute(routeInfo){
+    $('#progressBar').css('visibility', "visible");
+
     let vehicleTypeInfo = JSON.parse(routeInfo.vehicleType);
 
     let organisedData = {
@@ -218,11 +225,17 @@ function fetchOptimizedRoute(routeInfo){
                 routeName: routeInfo.routeTitle,
                 travelDistance: data.solution.distance,
                 numberOfRoutes: data.solution.routes[0].activities.length,
+                cities: routeInfo.locations,
+                routes: data.solution.routes[0].activities,
+                routeLines: data.solution.routes[0].points,
                 routes: data.solution.routes[0].activities,
                 timeToTravel: data.solution.max_operation_time,
                 vehicle: data.solution.routes[0].vehicle_id,
                 vehicleIcon: routeInfo.vehicleIcon,
                 vehicleType: routeInfo.vehicle,
+                vehicleProfile: vehicleTypeInfo.profile,
+                lengthOfTravel: data.solution.completion_time,
+                totalDistance: data.solution.distance,
                 vehicleProfile: vehicleTypeInfo.profile
             };
             //Store into local
@@ -236,12 +249,99 @@ function fetchOptimizedRoute(routeInfo){
                 localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
             }
             loadPreviousSearches();
+            loadOptimisedRoute(newData)
         })
         .catch(error => {
             console.error("Error", error)
         })
 }
 
+
+let markerList = [];
+let polylineList = [];
+
+function loadOptimisedRoute(data){
+
+    for(let i = 0; i< markerList.length; i++){
+        markerList[i].remove();
+        polylineList[i].remove();
+    }
+    
+
+    //Set Heading and info
+    $('#optimisedHeading').text(data.routeName);
+    $('#totalKmsMain').text(Math.floor(data.totalDistance / 1000))
+    $('#transportTypeMain').text(data.vehicleProfile);
+    let totalMinutes = data.lengthOfTravel / 60
+    let totalHours = Math.floor(totalMinutes / 60);
+    let remainingMinutes = Math.floor(totalMinutes % 60);
+    console.log(totalHours, remainingMinutes)
+    $('#travelTimeMain').text(totalHours + "H:" + remainingMinutes + "M");
+    $('#stopsMain').text(data.routes.length);
+    //Set map positioning
+    mainMap.setView([data.routes[0].address.lat, data.routes[0].address.lon], 7);
+
+    let stops = $('#stops')
+    stops.empty()
+    for(let i = 0; i < data.cities.length; i++){
+        let stopDiv = $('<div>').addClass('box');
+        let stopDivLocation = $('<h6>').addClass('is-6 title');
+
+
+        if(i == data.cities.length - 1){
+            stopDivLocation.text(i + ". " + data.cities[i].id + "->" + data.cities[0].id)
+        }else if(i < data.cities.length){
+            stopDivLocation.text((i + 1) + ". " + data.cities[i].id + "->" + data.cities[i + 1].id)
+        }
+
+        //Add markers to map
+        var marker = L.marker([data.routes[i].address.lat, data.routes[i].address.lon]).addTo(mainMap)
+        markerList.push(marker);
+        //Add popups
+        if(i == 0){
+            marker.bindPopup('Start Here').openPopup();
+        }
+        
+
+
+        stopDiv.append(stopDivLocation);
+        stops.append(stopDiv)
+    }
+    
+    for(let j = 0; j < data.routeLines.length; j++){
+    let latLng = []
+
+        for(let i = 0; i < data.routeLines[j].coordinates.length; i++){
+        let coord = []
+        coord.push(data.routeLines[j].coordinates[i][1]);
+        coord.push(data.routeLines[j].coordinates[i][0]);
+        latLng.push(coord)
+        }
+    var polyline = L.polyline(latLng, {color: 'red'}).addTo(mainMap);
+    polylineList.push(polyline);
+    }
+    
+   $('#progressBar').css('visibility', "hidden")
+}
+let randomExample = {
+                routeName: "Germany",
+                travelDistance: 120,
+                numberOfRoutes: 5,
+                routeNames: ["Hamburg", "Berlin", "Somewhere", "Anywhere", "New"],
+                timeToTravel: 100,
+                vehicle: "neg",
+                vehicleIcon: "neg",
+                vehicleType: "neg",
+                vehicleProfile: "neg"
+            };
+
+//fetchOptimizedRoute(routeInfo);
+
+loadPreviousSearches();
+// Set up map on results page
+
+
+var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
 //fetchOptimizedRoute(routeInfo);
  
 loadPreviousSearches();
@@ -252,7 +352,8 @@ var map = L.map('map').setView([51.505, -0.09], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+}).addTo(mainMap);
+
 }).addTo(map);
-
-
 

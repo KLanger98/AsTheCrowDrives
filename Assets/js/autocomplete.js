@@ -13,7 +13,6 @@ function addressAutocomplete(containerElement, callback, options) {
     var selectedItemsContainer = $('<div>', {
         class: 'selected-items-container'
     });
-
     containerElement.append(selectedItemsContainer);
 
     var currentItems;
@@ -35,17 +34,16 @@ function addressAutocomplete(containerElement, callback, options) {
         }
 
         clearButton.addClass('visible');
-
         var promise = new Promise((resolve, reject) => {
             currentPromiseReject = reject;
 
             const apiKey = "52c455d9879843aea262c6319e127a66";
             let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&limit=5&apiKey=${apiKey}`;
 
+
             if (options.type) {
                 url += `&type=${options.type}`;
             }
-
             $.get(url)
                 .done((data) => resolve(data))
                 .fail((err) => reject(err));
@@ -54,7 +52,6 @@ function addressAutocomplete(containerElement, callback, options) {
         promise.then(
             (data) => {
                 currentItems = data.features;
-
                 var autocompleteItemsElement = $('<div>', {
                     class: 'autocomplete-items'
                 });
@@ -118,7 +115,6 @@ function addressAutocomplete(containerElement, callback, options) {
             }
         );
     });
-
     function closeDropDownList() {
         var autocompleteItemsElement = containerElement.find(".autocomplete-items");
         if (autocompleteItemsElement.length) {
@@ -135,7 +131,6 @@ function addressAutocomplete(containerElement, callback, options) {
         coordinatesInput.val('');
     }
     
-
     $(document).on("click", function (e) {
         if (e.target !== inputElement[0]) {
             closeDropDownList();
