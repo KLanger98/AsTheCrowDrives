@@ -1,16 +1,4 @@
-function updateSubmittedLocations() {
-    const submittedLocationsContainer = document.getElementById('submittedLocations');
-    submittedLocationsContainer.innerHTML = ''; // Clear existing content
 
-    // Loop through each location in the array
-    locations.forEach((location, index) => {
-        const locationElement = document.createElement('div');
-        locationElement.classList.add('column', 'is-half', 'is-one-third-desktop');
-        locationElement.innerHTML = `<div class="notification">${index + 1}. ${location}</div>`;
-        submittedLocationsContainer.appendChild(locationElement); 
-        // Add location to the container
-    });
-}
 //This is just an example array for locations
 let sumLocations =  [{
      "id": "hamburg",
@@ -48,6 +36,32 @@ let sumLocations =  [{
        "lat": 50.109
      }
    }]
+function createLocationsArray(){
+    //Fetch the parent container that is housing all location divs 
+
+    //array where all the data will be stored
+    let locationsArray = []
+
+    //Create a while loop the continues while the container has children
+    let fullCityName = div
+        //For each child gather the data including location and name of location, storing the data in an object like the examples above 
+        myObject = {
+            "id": fullCityName,
+            "name": "visit_frankfurt",
+            "address": {
+                "location_id": fullCityName,
+                "lon": latitude,
+                "lat": longitude
+            } 
+        } 
+        //Push the object to an array declared before the while loop
+        locationsArray.push(myObject)
+
+        //Remove that child from parent container
+        console.log(locationsArray)
+    return locationsArray;
+}
+
 
 // Function to organise all the provided data so we can call the API
 function launchOptimisationRequest() {
