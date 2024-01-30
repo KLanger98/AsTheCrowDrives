@@ -1,10 +1,7 @@
 function addressAutocomplete() {
     let autoCompleteContainer = $('#autocomplete-container');
 
-    var selectedItemsContainer = $('<div>', {
-        class: 'selected-items-container'
-    });
-    autoCompleteContainer.append(selectedItemsContainer);
+    var selectedItemsContainer = $('#locationsContainer');
 
     var currentPromiseReject;
 
@@ -38,7 +35,7 @@ function addressAutocomplete() {
                 var autocompleteItemsElement = $('<div>', {
                     class: 'autocomplete-items'
                 });
-
+                console.log(data);
                 autoCompleteContainer.prepend(autocompleteItemsElement);
 
                 data.features.forEach((feature, index) => {
@@ -55,7 +52,7 @@ function addressAutocomplete() {
                                     html: feature.properties.formatted,
                                     "data-lat": feature.properties.lat,
                                     "data-lon": feature.properties.lon,
-                                    "data-cityName": feature.properties.city
+                                    "data-fullAddress": feature.properties.formatted
                         });
                         var removeIcon = $('<span>', {
                             class: 'button is-small is-danger ml-2',
