@@ -1,4 +1,3 @@
-
 //This is just an example array for locations
 let sumLocations =  [{
      "id": "hamburg",
@@ -35,33 +34,42 @@ let sumLocations =  [{
        "lon": 8.670,
        "lat": 50.109
      }
-   }]
-function createLocationsArray(){
-    //Fetch the parent container that is housing all location divs 
+    }]
+   
+function createLocationsArray() {
+    //Fetch the parent container that is housing all location divs
+    let locationContainer = $('selected-items-container');
+    
+    console.log(locationContainer);
 
     //array where all the data will be stored
-    let locationsArray = []
+    let locationsArray = [];
 
     //Create a while loop the continues while the container has children
-    let fullCityName = div
+    while (locationContainer.children()) {
+        let div = locationContainer.children();
+        let fullCityName = div.dataset.city;
+        let latitude = div.dataset.lat;
+        let longitude = div.dataset.lon;
+        
         //For each child gather the data including location and name of location, storing the data in an object like the examples above 
-        myObject = {
-            "id": fullCityName,
-            "name": "visit_frankfurt",
-            "address": {
-                "location_id": fullCityName,
-                "lon": latitude,
-                "lat": longitude
-            } 
-        } 
+        let myObject = {
+            "location_id": fullCityName,
+            "lon": longitude,
+            "lat": latitude // I reduced this object because I wanted to try and simplify the object and console.log it
+        };
+        
         //Push the object to an array declared before the while loop
         locationsArray.push(myObject)
+        console.log(myObject)
 
         //Remove that child from parent container
-        console.log(locationsArray)
+        locationContainer.removeChild(div);
+    }
+    console.log(locationsArray);
     return locationsArray;
 }
-
+createLocationsArray();
 
 // Function to organise all the provided data so we can call the API
 function launchOptimisationRequest() {
