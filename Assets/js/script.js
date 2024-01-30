@@ -1,44 +1,8 @@
-//This is just an example array for locations
-let sumLocations =  [{
-     "id": "hamburg",
-     "name": "visit_hamburg",
-     "address": {
-       "location_id": "hamburg",
-       "lon": 9.999,
-       "lat": 53.552
-     }
-   },
-   {
-     "id": "munich",
-     "name": "visit_munich",
-     "address": {
-       "location_id": "munich",
-       "lon": 11.570,
-       "lat": 48.145
-     }
-   },
-   {
-     "id": "cologne",
-     "name": "visit_cologne",
-     "address": {
-       "location_id": "cologne",
-       "lon": 6.957,
-       "lat": 50.936
-     }
-   },
-   {
-     "id": "frankfurt",
-     "name": "visit_frankfurt",
-     "address": {
-       "location_id": "frankfurt",
-       "lon": 8.670,
-       "lat": 50.109
-     }
-    }]
+
    
 function createLocationsArray() {
     //Fetch the parent container that is housing all location divs
-    let locationContainer = $('selected-items-container');
+    let locationContainer = $('#locationsContainer');
     
     console.log(locationContainer);
 
@@ -46,30 +10,37 @@ function createLocationsArray() {
     let locationsArray = [];
 
     //Create a while loop the continues while the container has children
-    while (locationContainer.children()) {
-        let div = locationContainer.children();
-        let fullCityName = div.dataset.city;
-        let latitude = div.dataset.lat;
-        let longitude = div.dataset.lon;
+        while($('#locationsContainer').children().length > 0){
+            let div = $('#locationsContainer :first-child');
+            let fullAddress = div.attr("data-fullAddress");
+            let latitude = parseFloat(div.attr('data-lat'));
+            let longitude = parseFloat(div.attr('data-lon'));
+
+            console.log(div, fullAddress, latitude)
         
         //For each child gather the data including location and name of location, storing the data in an object like the examples above 
-        let myObject = {
-            "location_id": fullCityName,
-            "lon": longitude,
-            "lat": latitude // I reduced this object because I wanted to try and simplify the object and console.log it
-        };
+            let nameConcat = "visit_" + fullAddress;
+            let myObject = {
+                "id": fullAddress,
+                "name": nameConcat,
+                "address": {
+                    "location_id": fullAddress,
+                    "lon": longitude,
+                    "lat": latitude
+                }
+            };
         
-        //Push the object to an array declared before the while loop
-        locationsArray.push(myObject)
-        console.log(myObject)
+            //Push the object to an array declared before the while loop
+            locationsArray.push(myObject)
+            console.log(myObject)
 
-        //Remove that child from parent container
-        locationContainer.removeChild(div);
-    }
+            //Remove that child from parent container
+            div.remove();
+        }
+    
     console.log(locationsArray);
     return locationsArray;
 }
-createLocationsArray();
 
 // Function to organise all the provided data so we can call the API
 function launchOptimisationRequest() {
@@ -81,7 +52,7 @@ function launchOptimisationRequest() {
     }
     let routeName = $('#routeTitle').val();
     //listOfLocations needs to be changed
-    let listOfLocations = sumLocations;
+    let listOfLocations = createLocationsArray();
     let vehicleName = $('input[name="vehicleType"]:checked').attr("data-transport");
     let vehicleIcon = $('input[name="vehicleType"]:checked').attr("data-icon");
     let vehicleType = $('input[name="vehicleType"]:checked').attr("data-vehicleDesc");
@@ -128,6 +99,9 @@ $('#searchPrev').on('keyup', function(){
 //Function used to load previous searches saved in local storage and display them in the previous search panel
 function loadPreviousSearches(){
     let previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
+    if(!previousSearches){
+        return;
+    }
     let previousSearchDiv = $('#previousSearchContent');
     previousSearchDiv.empty();
     let searchTerm = ""
@@ -142,6 +116,7 @@ function loadPreviousSearches(){
 
     
     //Load previous searches based on tab selected or search box
+    
     for(let i = 0; i < previousSearches.length; i++){
         if(activeTab !== "All"){
             if(previousSearches[i].vehicleProfile !== activeTab.toLowerCase()){
@@ -226,7 +201,7 @@ function fetchOptimizedRoute(routeInfo){
 
     let fetchUrl = "https://graphhopper.com/api/1/vrp?key=4b8e0eda-a757-4baf-b8fd-63dcc8b828fe";
 
-
+    console.log(organisedData);
     fetch(fetchUrl, {
         method: 'POST', //GET is the default.
         headers: {
@@ -292,7 +267,8 @@ function loadOptimisedRoute(data){
 
     //Set Heading and info
     $('#optimisedHeading').text(data.routeName);
-    $('#totalKmsMain').text(Math.floor(data.totalDistance / 1000))
+    let totalKms = Math.floor(data.totalDistance / 1000)
+    $('#totalKmsMain').text(totalKms)
     $('#transportTypeMain').text(data.vehicleProfile);
     let totalMinutes = data.lengthOfTravel / 60
     let totalHours = Math.floor(totalMinutes / 60);
@@ -300,8 +276,39 @@ function loadOptimisedRoute(data){
     console.log(totalHours, remainingMinutes)
     $('#travelTimeMain').text(totalHours + "H:" + remainingMinutes + "M");
     $('#stopsMain').text(data.routes.length);
-    //Set map positioning
-    mainMap.setView([data.routes[0].address.lat, data.routes[0].address.lon], 8);
+    //Determine zoom on map
+    let zoom;
+    if(totalKms > 20000){
+        zoom = 3
+    }else if(totalKms > 10000){
+        zoom = 4
+    }else if(totalKms > 5000){
+        zoom = 5
+    }else if(totalKms > 1000){
+        zoom = 7
+    }else if(totalKms > 500){
+        zoom = 8
+    }else if(totalKms > 100){
+        zoom = 10
+    }else if(totalKms > 50){
+        zoom = 12
+    }else if(totalKms > 20){
+        zoom = 13
+    } else{
+        zoom = 14
+    }
+
+    //Find average position to position map
+    let latitudeAvg = 0;
+    let longitudeAvg = 0;
+    for(let i = 0; i < data.routes.length; i++){
+        latitudeAvg = latitudeAvg + data.routes[i].address.lat
+        longitudeAvg = longitudeAvg + data.routes[i].address.lon
+    }
+    latitudeAvg = latitudeAvg / data.routes.length;
+    longitudeAvg = longitudeAvg / data.routes.length;
+
+    mainMap.setView([latitudeAvg, longitudeAvg], zoom);
 
     let stops = $('#stops')
     stops.empty()
@@ -327,12 +334,12 @@ function loadOptimisedRoute(data){
 
 
         stopDiv.append(stopDivLocation);
-        stops.append(stopDiv)
+        stops.append(stopDiv);
+        $('#stopsInOrder').append(stopDiv);
     }
     
     for(let j = 0; j < data.routeLines.length; j++){
     let latLng = []
-
         for(let i = 0; i < data.routeLines[j].coordinates.length; i++){
         let coord = []
         coord.push(data.routeLines[j].coordinates[i][1]);
@@ -365,8 +372,8 @@ loadPreviousSearches();
 
 var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
 //fetchOptimizedRoute(routeInfo);
- 
-loadPreviousSearches();
+
+
 // Set up map
 
 

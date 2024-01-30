@@ -44,6 +44,7 @@
                 <div class="control is-expanded">
                     <div id="autocomplete-container">
                         <input type="text" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
+                        <div id="locationsContainer"></div>
                     </div>
                 </div>
     </div>
@@ -104,40 +105,41 @@
     <div id="mapContainer" class="container">
         <progress class="progress is-large is-info" max="100" id="progressBar">60%</progress>
         <!-- Info dashboard -->
-        <div class="box container">
-            <h3 id="optimisedHeading" class="is-3 title"></h3>
-            <nav class="level">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Total KMs</p>
-                        <p class="title" id="totalKmsMain"></p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Transport</p>
-                        <p class="title" id="transportTypeMain"></p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Travel Time</p>
-                        <p class="title" id="travelTimeMain"></p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Number of stops</p>
-                        <p class="title" id="stopsMain"></p>
-                    </div>
-                </div>
-            </nav>
-        </div>
         
+        <div id="stopsInOrder"></div>
        
         <div id="mainMap" class="container">
         </div>
         <div id="stops"></div>
+    </div>
+    <div class="box container">
+        <h3 id="optimisedHeading" class="is-3 title"></h3>
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Total KMs</p>
+                    <p class="title" id="totalKmsMain"></p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Transport</p>
+                    <p class="title" id="transportTypeMain"></p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Travel Time</p>
+                    <p class="title" id="travelTimeMain"></p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Number of stops</p>
+                    <p class="title" id="stopsMain"></p>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <!-- CDN for jQuery -->
