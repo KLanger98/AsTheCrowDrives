@@ -48,21 +48,18 @@ function addressAutocomplete() {
                     itemElement.on('click', function () {
                        
                         var selectedItem = $('<div>', {
-                                    class: 'selected-item box is-small',
+                                    class: 'notification is-small selected-item',
                                     html: feature.properties.formatted,
                                     "data-lat": feature.properties.lat,
                                     "data-lon": feature.properties.lon,
                                     "data-fullAddress": feature.properties.formatted
                         });
-                        var removeIcon = $('<span>', {
-                            class: 'button is-small is-danger ml-2',
-                        }).append($('<i>', {
-                                        class: 'fa-solid fa-trash-can'      
-                                    })
-                                );
-                                removeIcon.on('click', function () {
-                                    selectedItem.remove();
-                                });
+                        var removeIcon = $('<button>', {
+                            class: 'delete is-medium'
+                        })
+                            removeIcon.on('click', function () {
+                                selectedItem.remove();
+                            });
                     
                         selectedItem.append(removeIcon);
                         selectedItemsContainer.append(selectedItem);
