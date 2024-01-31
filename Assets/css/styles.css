@@ -35,13 +35,34 @@ body {
     width: 200px;
 }
 
-#progressBar {
-    visibility: hidden;
+
+#progressBar{
+    display: none;
 }
 
 #mainMap {
     height: 50vh;
-    z-index: 0;
+    width: 100%;
+}
+
+.orangeDark{
+    background-color: #FF6B35;
+}
+.orangeLight {
+    background-color: #FB966A;
+}
+.orangeLightest{
+    background-color: #F7C59F;
+}
+
+.blueLight{
+    background-color: #85AAB7;
+}
+.blueDark{
+    background-color: #1A659E;
+}
+.blueDarkest{
+    background-color: #004E89;
 }
 
 #map {
