@@ -1,5 +1,9 @@
-
-   
+// function for hamburger menu
+$(".navbar-burger").click(function() {
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+});
+  
 function createLocationsArray() {
     //Fetch the parent container that is housing all location divs
     let locationContainer = $('#locationsContainer');

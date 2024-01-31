@@ -1,9 +1,33 @@
-
-body{
+body {
     background-color: #EFEFD0;
+    margin: 0;
+    padding: 0;
 }
 
-#stops{
+#form {
+    padding-top: 20px;
+    scroll-margin-top: 5em;
+}
+
+#main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #004e89;
+    z-index: 3000; 
+}
+
+.navbar-burger {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#navMenu .navbar-item:hover {
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: underline;
+}
+
+#stops {
     position: relative;
     top: -95vh;
     left: 80%;
@@ -11,11 +35,12 @@ body{
     width: 200px;
 }
 
+
 #progressBar{
     display: none;
 }
 
-#mainMap{
+#mainMap {
     height: 50vh;
     width: 100%;
 }
@@ -40,7 +65,7 @@ body{
     background-color: #004E89;
 }
 
-#map{
+#map {
     height: 400px;
     width: 400px;
     border: 6px solid #1A659E;
@@ -50,8 +75,8 @@ body{
     box-shadow: 5px 5px 5px;
 }
 
-.notification {
-    background-color: #F7C59F
+.delete:hover {
+    background-color: red;
 }
 
 /* Adjust padding for list items */
@@ -59,6 +84,7 @@ ol {
     list-style-position: inside;
     padding-top: 5px;
 }
+
 #removePrevious{
     display: none;
 }
@@ -69,4 +95,53 @@ ol {
 
 .selected-items-container {
     padding-top: 20px;
+}
+
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(/AsTheCrowDrives/Assets/Images/manyCrows.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: brightness(60%);
+}
+
+.hero-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    margin: 1.5em 1em 0.5em 1em;
+}
+
+.hero-title {
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    font-weight: 200;
+    margin-top: 1rem;
+}
+
+#arrow {
+    position: absolute;
+    bottom: -6em;
+}
+
+#arrow:hover {
+    cursor: pointer;
 }
