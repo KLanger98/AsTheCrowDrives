@@ -19,25 +19,39 @@
     <link rel="stylesheet" href="./Assets/css/styles.css">
 </head>
 <body>
-    <!-- TODO Add header with navbar -->
-    <header class="title is-1 has-text-white" style="background-color: #004e89;">
-        <div class="is-flex is-justify-content-center">
-            <h1 class="has-text-centered"> As The Crow Drives </h1>
-            <a class="navbar-item">
-                <img src="Assets/Images/Crow_Icon.png" style="max-height: 80px">
-            </a>
-        </div>
-        <nav class="navbar is-flex is-justify-content-center" style="background-color: #004e89;">
-            <div class="navbar" style="background-color: #004e89;">
-                <ul class="is-flex is-justify-content-center">
-                    <li><a href="./Assets/html/about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
-                    <li><a href="./index.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Tool</a></li>
-                    <li><a href="./Assets/html/results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
-                </ul>
+    <header id="main-header">
+        <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #004e89;">
+            <div class="navbar-brand" style="min-height: 70px;">
+                <div class="navbar-item">
+                    <img src="./Assets/Images/logo.png" alt="Crow Icon" style="min-height: 5em;">
+                </div>
+                <a role="button" class="navbar-burger mr-4" style="min-height: 100px;" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>     
+            </div>
+            <div id="navMenu" class="navbar-menu" style="background-color: rgba(255, 255, 255, 0);">
+                <div class="navbar-end mr-4">
+                    <a class="navbar-item has-text-white is-size-5" href="./Assets/html/about.html">About</a>
+                    <a class="navbar-item has-text-white is-size-5" href="./index.html">Tool</a>
+                    <a class="navbar-item has-text-white is-size-5" href="./Assets/html/results.html">Result</a>
+                </div>
             </div>
         </nav>
     </header>
-    <section class="section">   
+    <section class="hero">
+        <div class="hero-content">
+           <h1 class="hero-title">
+                I have no idea what to write here!
+           </h1>
+           <h2 class="hero-subtitle">
+                We offer the best route to take and tailor-made trips!
+           </h2>
+           <i id="arrow" class="fa-solid fa-angles-down fa-2xl" style="color: #ffffff;" onclick="location.href='./#form'"></i>
+        </div>
+    </section>
+    <section id="form" class="section">   
         <div class="container">
             <div class="box">
                 <h1 class="title">Where are you heading to?</h1>
