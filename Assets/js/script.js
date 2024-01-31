@@ -56,14 +56,15 @@ function launchOptimisationRequest() {
     let vehicleName = $('input[name="vehicleType"]:checked').attr("data-transport");
     let vehicleIcon = $('input[name="vehicleType"]:checked').attr("data-icon");
     let vehicleType = $('input[name="vehicleType"]:checked').attr("data-vehicleDesc");
-
+    let roundTrip = $('input[name="routeType"]:checked').attr('data-val');
+    console.log(roundTrip)
     
 
     //Store all data inside an object
     let routeInfo = {
         routeTitle: routeName,
         locations: listOfLocations,
-        returnToStart: true,
+        returnToStart: roundTrip,
         vehicle: vehicleName,
         vehicleIcon: vehicleIcon,
         vehicleType: vehicleType
@@ -75,7 +76,7 @@ function launchOptimisationRequest() {
 
     console.log(routeInfo)
     
-    fetchOptimizedRoute(routeInfo)
+    fetchOptimizedRoute(routeInfo, true)
 }
 
 //Function to change which tab is active in the previous search panel
@@ -128,22 +129,30 @@ function loadPreviousSearches(){
             continue;
         }
         
-        let div = $('<div>')
+        let div = $('<div>').addClass('is-flex is-align-items-center');
         let span = $('<span>').addClass('panel-icon');
         let icon = $('<i>').addClass(previousSearches[i].vehicleIcon);
         span.append(icon);
         let anchor = $('<a>').addClass('panel-block is-flex is-justify-content-space-between').attr('id', 'prevSearchLi')
-        anchor.attr("data-all", previousSearches[i])
-        let text = $('<p>').text(previousSearches[i].routeName);
+        anchor.attr("data-all", JSON.stringify(previousSearches[i])).css('height', "50px")
+        let text = $('<h5>').text(previousSearches[i].routeName).addClass('is-6 title');
         let button = $('<button>').addClass('button is-danger').text('Remove').attr('id', "removePrevious").on('click', removeSearch);
-        div.append(span, text)
+
+        div.append(span, text);
         anchor.append(div, button);
         previousSearchDiv.append(anchor);
+
+        anchor.on("click", loadThisSearch);
     }
 
 
 }
 
+function loadThisSearch(event){
+    let data = JSON.parse($(event.target).attr('data-all'));
+    
+    fetchOptimizedRoute(data.fetchStructure, false);
+}
 
 //Delete a selected previous search
 function removeSearch(event){
@@ -163,8 +172,8 @@ function removeSearch(event){
 }
 
 //Fetch the optimized route once provided with the location, vehicle type and return to origin
-function fetchOptimizedRoute(routeInfo){
-    $('#progressBar').css('visibility', "visible");
+function fetchOptimizedRoute(routeInfo, addToLocal){
+    $('#progressBar').css('display', "block");
 
     let vehicleTypeInfo = JSON.parse(routeInfo.vehicleType);
 
@@ -233,19 +242,22 @@ function fetchOptimizedRoute(routeInfo){
                 vehicleProfile: vehicleTypeInfo.profile,
                 lengthOfTravel: data.solution.completion_time,
                 totalDistance: data.solution.distance,
-                vehicleProfile: vehicleTypeInfo.profile
+                vehicleProfile: vehicleTypeInfo.profile,
+                fetchStructure: routeInfo
             };
             //Store into local
             let storeInLocal = JSON.parse(localStorage.getItem('previousSearches'));
-
-            if(!storeInLocal){
+            if(addToLocal == true){
+                if(!storeInLocal){
                 storeInLocal = [newData];
                 localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
             } else{
                 storeInLocal.push(newData);
                 localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
+
+                loadPreviousSearches();
             }
-            loadPreviousSearches();
+            }
             loadOptimisedRoute(newData)
         })
         .catch(error => {
@@ -310,34 +322,34 @@ function loadOptimisedRoute(data){
 
     mainMap.setView([latitudeAvg, longitudeAvg], zoom);
 
-    let stops = $('#stops')
+    let stops = $('#stopsInOrder')
     stops.empty()
+    //Append divs containing information about order of route
     for(let i = 0; i < data.cities.length; i++){
-        let stopDiv = $('<div>').addClass('box');
-        let stopDivLocation = $('<h6>').addClass('is-6 title');
+        generateStop(i, i, data);
 
-
-        if(i == data.cities.length - 1){
-            stopDivLocation.text(i + ". " + data.cities[i].id + "->" + data.cities[0].id)
-        }else if(i < data.cities.length){
-            stopDivLocation.text((i + 1) + ". " + data.cities[i].id + "->" + data.cities[i + 1].id)
+        if(data.cities.length == (i + 1) && data.fetchStructure.returnToStart == "true"){
+            let iconDiv = $('<span>').addClass("icon is-large").append($('<i>').addClass('fa-solid fa-arrow-down has-text-white'));
+            $('#stopsInOrder').append(iconDiv);
+            generateStop(i, 0, data);
+        } else if (data.cities.length != (i + 1)){
+            let iconDiv = $('<span>').addClass("icon is-large").append($('<i>').addClass('fa-solid fa-arrow-down has-text-white'));
+            $('#stopsInOrder').append(iconDiv);
         }
+        
 
         //Add markers to map
         var marker = L.marker([data.routes[i].address.lat, data.routes[i].address.lon]).addTo(mainMap)
         markerList.push(marker);
         //Add popups
-        if(i == 0){
+        if(i == 0){ 
             marker.bindPopup('Start Here').openPopup();
         }
         
-
-
-        stopDiv.append(stopDivLocation);
-        stops.append(stopDiv);
-        $('#stopsInOrder').append(stopDiv);
+        
     }
     
+    //Organise polyline data to be added to map
     for(let j = 0; j < data.routeLines.length; j++){
     let latLng = []
         for(let i = 0; i < data.routeLines[j].coordinates.length; i++){
@@ -350,31 +362,29 @@ function loadOptimisedRoute(data){
     polylineList.push(polyline);
     }
     
-   $('#progressBar').css('visibility', "hidden")
+   $('#progressBar').css("display", "none")
 }
-let randomExample = {
-                routeName: "Germany",
-                travelDistance: 120,
-                numberOfRoutes: 5,
-                routeNames: ["Hamburg", "Berlin", "Somewhere", "Anywhere", "New"],
-                timeToTravel: 100,
-                vehicle: "neg",
-                vehicleIcon: "neg",
-                vehicleType: "neg",
-                vehicleProfile: "neg"
-            };
+
+function generateStop(position, num, data){
+    let stopContainer =  $('<div>').addClass('is-flex is-align-items-center is-justify-content-center');
+    let numberIconContainer = $('<span>').addClass('icon is-large is-align-self-flex-start').append($('<i>').addClass('has-text-white fa-solid fa-' + (position + 1)));
+            
+    let stopDiv = $('<div>').addClass('box blueDarkest').append($('<h6>').addClass('is-6 title has-text-white').text(data.cities[num].id));
+
+    stopContainer.append(numberIconContainer, stopDiv)
+    $('#stopsInOrder').append(stopContainer);
+
+    
+ }
+
 
 //fetchOptimizedRoute(routeInfo);
 
 loadPreviousSearches();
-// Set up map on results page
 
 
 var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
 //fetchOptimizedRoute(routeInfo);
-
-
-// Set up map
 
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -40,7 +40,7 @@
     <section class="section">   
         <div class="container">
             <div class="box">
-                <h1 class="title">Where are you heading to?</h1>
+                <h1 class="title mb-3">Where are you heading to?</h1>
                 <div class="control is-expanded">
                     <div id="autocomplete-container">
                         <input type="text" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
@@ -52,23 +52,23 @@
                 <div class="columns is-vcentered is-mobile">
                     </div>
                     <div class="column is-12">
-                        <h2 class="title is-3">Route details</h2>
+                        <h2 class="title is-3 mb-2">Route details</h2>
                         <!-- Radio buttons to select route type -->
-                        <div class="control" id="routeTypeSelect">
+                        <div class="control mb-3" id="routeTypeSelect">
                             <label class="radio">
-                                <input type="radio" id="roundTripCheck" name="routeType" checked>
+                                <input type="radio" id="roundTripCheck" name="routeType" data-val="true" checked>
                                 Round-Trip
                                 <i class="fa-solid fa-arrows-rotate"></i>
                             </label>
                             <label class="radio">
-                                <input type="radio" name="routeType">
+                                <input type="radio" name="routeType" data-val="false">
                                 One-Way
                                 <i class="fa-solid fa-arrow-right"></i>
                             </label>
                         </div>
                         <!-- Radio Buttons to select mode of transport -->
-                        <h4 class="title is-6">Mode of transport:</h4>
-                        <div class="control" id="transportModeSelect">
+                        <h4 class="title is-4 mb-3">Mode of transport:</h4>
+                        <div class="control mb-3" id="transportModeSelect">
                             <label class="radio">
                                 <input type="radio" name="vehicleType" checked data-transport="my-car" data-icon="fa-solid fa-car-side"
                                 data-vehicleDesc='{"type_id":"my-car","profile":"car"}'>
@@ -90,7 +90,7 @@
                             </label>
                         </div>
                         <div class="control is-expanded">
-                            <h3 class="title is-4">Name of route</h3>
+                            <h3 class="title is-4 mb-3">Name of route</h3>
                             <input class="input" type="text" id="routeTitle" placeholder="i.e. 'Rome', 'Melbourne Holiday', 'Bike ride'">
                         </div>
                         <div id="errorMsgDiv"></div>
@@ -102,45 +102,83 @@
             </div>
         </div>
     </section>
-    <div id="mapContainer" class="container">
-        <progress class="progress is-large is-info" max="100" id="progressBar">60%</progress>
-        <!-- Info dashboard -->
-        
-        <div id="stopsInOrder"></div>
-       
-        <div id="mainMap" class="container">
+    
+    <section class="blueLight p-6">
+        <div class="box container blueDarkest is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
+            <h2 id="optimisedHeading" class="is-2 title has-text-white">Pending Title</h2>
         </div>
-        <div id="stops"></div>
-    </div>
-    <div class="box container">
-        <h3 id="optimisedHeading" class="is-3 title"></h3>
-        <nav class="level">
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Total KMs</p>
-                    <p class="title" id="totalKmsMain"></p>
+        <progress class="progress is-large is-info" max="100" id="progressBar">60%</progress>
+        <div class="box container">
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Total KMs</p>
+                        <p class="title" id="totalKmsMain"></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Transport</p>
+                        <p class="title" id="transportTypeMain"></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Travel Time</p>
+                        <p class="title" id="travelTimeMain"></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Number of stops</p>
+                        <p class="title" id="stopsMain"></p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Mapped optimised route -->
+        <div id="mapContainer" class="container is-flex">
+            <div id="mainMap" class="m-3">
+            </div>
+            <div class="box m-3 blueDark column is-one-quarter is-flex is-align-items-center is-flex-direction-column">
+                <h3 class="title is-3 has-text-white">Optimised Route</h3>
+                <div id="stopsInOrder" class="is-flex is-align-items-center is-flex-direction-column is-justify-content-space-evenly">
+                    
                 </div>
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Transport</p>
-                    <p class="title" id="transportTypeMain"></p>
-                </div>
+            
+        </div>
+    </section>
+    <!-- Previous Search Section -->
+    <section class="p-6">
+        <nav class="panel container has-background-white">
+            <p class="panel-heading blueDark has-text-white">
+                Previous Searches
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input" type="text" placeholder="Search" id="searchPrev">
+                    <span class="icon is-left">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </span>
+                </p>
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Travel Time</p>
-                    <p class="title" id="travelTimeMain"></p>
-                </div>
+            <p class="panel-tabs">
+                <a class="is-active" onclick="changeActiveTab(event)">All</a>
+                <a onclick="changeActiveTab(event)">Car</a>
+                <a onclick="changeActiveTab(event)">Bike</a>
+                <a onclick="changeActiveTab(event)">Walk</a>
+            </p>
+            <div id="previousSearchContent">
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Number of stops</p>
-                    <p class="title" id="stopsMain"></p>
-                </div>
-            </div>
+            <!-- <div class="panel-block  is-white">
+                    <button class="button is-link is-outlined is-fullwidth">
+                        Delete Selected Routes
+                    </button>
+                </div> -->
         </nav>
-    </div>
+    </section>
+    
 
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
