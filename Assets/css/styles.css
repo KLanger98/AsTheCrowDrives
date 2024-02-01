@@ -120,7 +120,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url(/Assets/Images/manyCrows.jpg);
+    background: url(../Images/manyCrows.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
