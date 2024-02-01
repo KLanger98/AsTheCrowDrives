@@ -1,11 +1,96 @@
+// function for hamburger menu
+$(".navbar-burger").click(function() {
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+});
 
-   
+
+function addressAutocomplete() {
+    let autoCompleteContainer = $('#autocomplete-container');
+
+    var selectedItemsContainer = $('#locationsContainer');
+
+    var currentPromiseReject;
+
+    let inputField = $('#inputLocation')
+    inputField.on('input', function () {
+        var currentValue = $(this).val();
+        $('.autocomplete-items').empty()
+
+        if (currentPromiseReject) {
+            currentPromiseReject({
+                canceled: true
+            });
+        }
+        if (!currentValue) {
+            return false;
+        }
+
+        var promise = new Promise((resolve, reject) => {
+            currentPromiseReject = reject;
+
+            const apiKey = "52c455d9879843aea262c6319e127a66";
+            let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(currentValue)}&limit=5&apiKey=${apiKey}`;
+
+            $.get(url)
+                .done((data) => resolve(data))
+                .fail((err) => reject(err));
+        });
+
+        promise.then(
+            (data) => {
+                var autocompleteItemsElement = $('<div>', {
+                    class: 'autocomplete-items'
+                });
+                console.log(data);
+                autoCompleteContainer.prepend(autocompleteItemsElement);
+
+                data.features.forEach((feature) => {
+                    var itemElement = $('<div>', {
+                        class: 'autocomplete-item',
+                        html: feature.properties.formatted
+                    });
+
+                    //Create a click function that saves the necessary data inside a div and appends that below the search box
+                    itemElement.on('click', function () {
+                    
+                        var selectedItem = $('<div>', {
+                                    class: 'notification is-small selected-item',
+                                    html: feature.properties.formatted,
+                                    "data-lat": feature.properties.lat,
+                                    "data-lon": feature.properties.lon,
+                                    "data-fullAddress": feature.properties.formatted
+                        });
+                        var removeIcon = $('<button>', {
+                            class: 'delete is-medium'
+                        })
+                            removeIcon.on('click', function () {
+                                selectedItem.remove();
+                            });
+                    
+                        selectedItem.append(removeIcon);
+                        selectedItemsContainer.append(selectedItem);
+                    
+                        inputField.val('');
+                        $('.autocomplete-items').empty();
+                    }).css('cursor', 'pointer');
+                    
+                    autocompleteItemsElement.append(itemElement);
+                });
+            },
+            (err) => {
+                if (!err.canceled) {
+                    console.log(err);
+                }
+            }
+        );
+    });
+}
+// Initialize address autocomplete with the specified container, callback, and options
+addressAutocomplete();
+
+
 function createLocationsArray() {
-    //Fetch the parent container that is housing all location divs
-    let locationContainer = $('#locationsContainer');
-    
-    console.log(locationContainer);
-
     //array where all the data will be stored
     let locationsArray = [];
 
@@ -15,8 +100,6 @@ function createLocationsArray() {
             let fullAddress = div.attr("data-fullAddress");
             let latitude = parseFloat(div.attr('data-lat'));
             let longitude = parseFloat(div.attr('data-lon'));
-
-            console.log(div, fullAddress, latitude)
         
         //For each child gather the data including location and name of location, storing the data in an object like the examples above 
             let nameConcat = "visit_" + fullAddress;
@@ -32,13 +115,9 @@ function createLocationsArray() {
         
             //Push the object to an array declared before the while loop
             locationsArray.push(myObject)
-            console.log(myObject)
-
             //Remove that child from parent container
             div.remove();
         }
-    
-    console.log(locationsArray);
     return locationsArray;
 }
 
@@ -56,14 +135,15 @@ function launchOptimisationRequest() {
     let vehicleName = $('input[name="vehicleType"]:checked').attr("data-transport");
     let vehicleIcon = $('input[name="vehicleType"]:checked').attr("data-icon");
     let vehicleType = $('input[name="vehicleType"]:checked').attr("data-vehicleDesc");
-
+    let roundTrip = JSON.parse($('input[name="routeType"]:checked').attr('data-val'));
+    console.log(roundTrip)
     
 
     //Store all data inside an object
     let routeInfo = {
         routeTitle: routeName,
         locations: listOfLocations,
-        returnToStart: true,
+        returnToStart: roundTrip,
         vehicle: vehicleName,
         vehicleIcon: vehicleIcon,
         vehicleType: vehicleType
@@ -71,11 +151,13 @@ function launchOptimisationRequest() {
 
     if(!$('#roundTripCheck').is(':checked')){
         routeInfo.returnToStart = false;
+    } else {
+        routeInfo.returnToStart = true;
     }
 
     console.log(routeInfo)
     
-    fetchOptimizedRoute(routeInfo)
+    fetchOptimizedRoute(routeInfo, true)
 }
 
 //Function to change which tab is active in the previous search panel
@@ -128,22 +210,29 @@ function loadPreviousSearches(){
             continue;
         }
         
-        let div = $('<div>')
+        let div = $('<div>').addClass('is-flex is-align-items-center');
         let span = $('<span>').addClass('panel-icon');
         let icon = $('<i>').addClass(previousSearches[i].vehicleIcon);
         span.append(icon);
         let anchor = $('<a>').addClass('panel-block is-flex is-justify-content-space-between').attr('id', 'prevSearchLi')
-        anchor.attr("data-all", previousSearches[i])
-        let text = $('<p>').text(previousSearches[i].routeName);
+        anchor.attr("data-all", JSON.stringify(previousSearches[i])).css('height', "50px")
+        let text = $('<h5>').text(previousSearches[i].routeName).addClass('is-6 title');
         let button = $('<button>').addClass('button is-danger').text('Remove').attr('id', "removePrevious").on('click', removeSearch);
-        div.append(span, text)
+
+        div.append(span, text);
         anchor.append(div, button);
         previousSearchDiv.append(anchor);
+
+        anchor.on("click", loadThisSearch);
     }
 
 
 }
 
+function loadThisSearch(event){
+    let data = JSON.parse($(event.target).attr('data-all'));
+    fetchOptimizedRoute(data.fetchStructure, false);
+}
 
 //Delete a selected previous search
 function removeSearch(event){
@@ -163,8 +252,8 @@ function removeSearch(event){
 }
 
 //Fetch the optimized route once provided with the location, vehicle type and return to origin
-function fetchOptimizedRoute(routeInfo){
-    $('#progressBar').css('visibility', "visible");
+function fetchOptimizedRoute(routeInfo, addToLocal){
+    $('#progressBar').css('display', "block");
 
     let vehicleTypeInfo = JSON.parse(routeInfo.vehicleType);
 
@@ -233,19 +322,22 @@ function fetchOptimizedRoute(routeInfo){
                 vehicleProfile: vehicleTypeInfo.profile,
                 lengthOfTravel: data.solution.completion_time,
                 totalDistance: data.solution.distance,
-                vehicleProfile: vehicleTypeInfo.profile
+                vehicleProfile: vehicleTypeInfo.profile,
+                fetchStructure: routeInfo
             };
             //Store into local
             let storeInLocal = JSON.parse(localStorage.getItem('previousSearches'));
-
-            if(!storeInLocal){
+            if(addToLocal == true){
+                if(!storeInLocal){
                 storeInLocal = [newData];
                 localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
             } else{
                 storeInLocal.push(newData);
                 localStorage.setItem("previousSearches", JSON.stringify(storeInLocal))
+
+                loadPreviousSearches();
             }
-            loadPreviousSearches();
+            }
             loadOptimisedRoute(newData)
         })
         .catch(error => {
@@ -259,12 +351,9 @@ let polylineList = [];
 
 function loadOptimisedRoute(data){
 
-    for(let i = 0; i< markerList.length; i++){
-        markerList[i].remove();
-        polylineList[i].remove();
-    }
+    markerList = [];
+    polylineList = [];
     
-
     //Set Heading and info
     $('#optimisedHeading').text(data.routeName);
     let totalKms = Math.floor(data.totalDistance / 1000)
@@ -278,24 +367,25 @@ function loadOptimisedRoute(data){
     $('#stopsMain').text(data.routes.length);
     //Determine zoom on map
     let zoom;
-    if(totalKms > 20000){
-        zoom = 3
-    }else if(totalKms > 10000){
-        zoom = 4
-    }else if(totalKms > 5000){
-        zoom = 5
-    }else if(totalKms > 1000){
-        zoom = 7
-    }else if(totalKms > 500){
-        zoom = 8
-    }else if(totalKms > 100){
-        zoom = 10
-    }else if(totalKms > 50){
-        zoom = 12
-    }else if(totalKms > 20){
-        zoom = 13
-    } else{
-        zoom = 14
+
+    if (totalKms > 20000) {
+        zoom = 3;
+    } else if (totalKms > 10000) {
+        zoom = 4;
+    } else if (totalKms > 5000) {
+        zoom = 5;
+    } else if (totalKms > 1000) {
+        zoom = 7;
+    } else if (totalKms > 500) {
+        zoom = 8;
+    } else if (totalKms > 100) {
+        zoom = 10;
+    } else if (totalKms > 20) {
+        zoom = 12;
+    } else if (totalKms > 0) {
+        zoom = 13;
+    } else {
+        zoom = 4;
     }
 
     //Find average position to position map
@@ -310,34 +400,39 @@ function loadOptimisedRoute(data){
 
     mainMap.setView([latitudeAvg, longitudeAvg], zoom);
 
-    let stops = $('#stops')
+    let stops = $('#stopsInOrder')
     stops.empty()
+    //Append divs containing information about order of route
     for(let i = 0; i < data.cities.length; i++){
-        let stopDiv = $('<div>').addClass('box');
-        let stopDivLocation = $('<h6>').addClass('is-6 title');
+        generateStop(i, i, data);
 
-
-        if(i == data.cities.length - 1){
-            stopDivLocation.text(i + ". " + data.cities[i].id + "->" + data.cities[0].id)
-        }else if(i < data.cities.length){
-            stopDivLocation.text((i + 1) + ". " + data.cities[i].id + "->" + data.cities[i + 1].id)
+        let travelMode;
+        if(data.vehicleProfile == "car"){
+            travelMode = "driving";
+        } else if(data.vehicleProfile == "bike"){
+            travelMode = "bicycling";
+        } else if(data.vehicleProfile == "foot"){
+            travelMode = "walking";
         }
 
-        //Add markers to map
+        let googleMapsURL = "https://www.google.com/maps/dir/?api=1&origin=" + data.routes[i].address.lat + "," + data.routes[i].address.lon + "&destination=" + data.routes[i + 1].address.lat + "," + data.routes[i + 1].address.lon + "&travelmode=" + travelMode;
+
+        if(data.cities.length == (i + 1) && data.fetchStructure.returnToStart == true){
+            generateIcons(googleMapsURL);
+            generateStop(i, 0, data);
+        } else if (data.cities.length != (i + 1)){
+            generateIcons(googleMapsURL);
+        }
+        //Add relevant marker to map
         var marker = L.marker([data.routes[i].address.lat, data.routes[i].address.lon]).addTo(mainMap)
         markerList.push(marker);
-        //Add popups
-        if(i == 0){
+        //Add starting location popup
+        if(i == 0){ 
             marker.bindPopup('Start Here').openPopup();
         }
-        
-
-
-        stopDiv.append(stopDivLocation);
-        stops.append(stopDiv);
-        $('#stopsInOrder').append(stopDiv);
     }
     
+    //Organise polyline data to be added to map
     for(let j = 0; j < data.routeLines.length; j++){
     let latLng = []
         for(let i = 0; i < data.routeLines[j].coordinates.length; i++){
@@ -350,33 +445,38 @@ function loadOptimisedRoute(data){
     polylineList.push(polyline);
     }
     
-   $('#progressBar').css('visibility', "hidden")
+   $('#progressBar').css("display", "none")
 }
-let randomExample = {
-                routeName: "Germany",
-                travelDistance: 120,
-                numberOfRoutes: 5,
-                routeNames: ["Hamburg", "Berlin", "Somewhere", "Anywhere", "New"],
-                timeToTravel: 100,
-                vehicle: "neg",
-                vehicleIcon: "neg",
-                vehicleType: "neg",
-                vehicleProfile: "neg"
-            };
+
+function generateStop(position, num, data){
+    let stopContainer =  $('<div>').addClass('is-flex is-align-items-center is-justify-content-center');
+    let numberIconContainer = $('<span>').addClass('icon is-large is-align-self-flex-start').append($('<i>').addClass('has-text-white fa-solid fa-' + (position + 1)));
+            
+    let stopDiv = $('<div>').addClass('box blueDarkest').append($('<h6>').addClass('is-6 title has-text-white').text(data.cities[num].id));
+
+    stopContainer.append(numberIconContainer, stopDiv)
+    $('#stopsInOrder').append(stopContainer);
+ }
+
+ function generateIcons(url){
+    let iconDiv = $('<a>').addClass("icon is-large").append($('<i>').addClass('fa-solid fa-arrow-down has-text-white'));
+
+    let navDiv = $('<a>').addClass("icon is-large").append($('<i>').addClass('fa-solid fa-route has-text-white')).attr('href', url);
+
+    $('#stopsInOrder').append(iconDiv, navDiv);
+ }
+
+
+
 
 //fetchOptimizedRoute(routeInfo);
-
 loadPreviousSearches();
-// Set up map on results page
 
 
+//Load default map view
 var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
-//fetchOptimizedRoute(routeInfo);
 
-
-// Set up map
-
-
+//Load map
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

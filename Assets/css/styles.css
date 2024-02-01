@@ -1,9 +1,35 @@
-
-body{
+body {
     background-color: #EFEFD0;
+    margin: 0;
+    padding: 0;
 }
 
-#stops{
+#prev-search {
+    position: relative;
+    padding-top: 3em;
+    scroll-margin-top: 5em;
+    min-height: 100vh;
+}
+
+#main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #004e89;
+    z-index: 3000; 
+}
+
+.navbar-burger {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#navMenu .navbar-item:hover {
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: underline;
+}
+
+#stops {
     position: relative;
     top: -95vh;
     left: 80%;
@@ -12,15 +38,39 @@ body{
 }
 
 #progressBar{
-    visibility: hidden;
+    display: none;
 }
 
-#mainMap{
+#mainMap {
     height: 50vh;
-    z-index: 0;
+    width: 100%;
 }
 
-#map{
+.orangeDark {
+    background-color: #FF6B35;
+}
+
+.orangeLight {
+    background-color: #FB966A;
+}
+
+.orangeLightest {
+    background-color: #F7C59F;
+}
+
+.blueLight {
+    background-color: #85AAB7;
+}
+
+.blueDark {
+    background-color: #1A659E;
+}
+
+.blueDarkest {
+    background-color: #004E89;
+}
+
+#map {
     height: 400px;
     width: 400px;
     border: 6px solid #1A659E;
@@ -30,15 +80,20 @@ body{
     box-shadow: 5px 5px 5px;
 }
 
-.notification {
-    background-color: #F7C59F
+#mainMap {
+    border-radius: 5px;
+}
+
+.delete:hover {
+    background-color: red;
 }
 
 /* Adjust padding for list items */
-ol {
+/* ol {
     list-style-position: inside;
     padding-top: 5px;
-}
+} */
+
 #removePrevious{
     display: none;
 }
@@ -50,4 +105,4 @@ ol {
 .selected-items-container {
     padding-top: 20px;
 }
-zz
+
