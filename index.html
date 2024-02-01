@@ -48,17 +48,21 @@
            <h2 class="hero-subtitle">
                 We offer the best route to take and tailor-made trips!
            </h2>
-           <i id="arrow" class="fa-solid fa-angles-down fa-2xl" style="color: #ffffff;" onclick="location.href='./#form'"></i>
+         <span id="arrow-double" onclick="location.href='./#prev-search'">
+            <i class="fa-solid fa-angles-down fa-2xl" style="color: #ffffff;"></i>
+            <p>Previous Searches</p>
+        </span>
         </div>
     </section>
-    <section id="form" class="section">   
+    <section class="section">   
         <div class="container">
             <div class="box">
                 <h1 class="title mb-3">Where are you heading to?</h1>
                 <div class="control is-expanded">
                     <div id="autocomplete-container">
                         <input type="text" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
-                        <div id="locationsContainer"></div>
+                        <div id="locationsContainer">
+                        </div>
                     </div>
                 </div>
     </div>
@@ -116,7 +120,6 @@
             </div>
         </div>
     </section>
-    
     <section class="blueLight p-6">
         <div class="box container blueDarkest is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
             <h2 id="optimisedHeading" class="is-2 title has-text-white">Pending Title</h2>
@@ -151,20 +154,18 @@
             </nav>
         </div>
         <!-- Mapped optimised route -->
-        <div id="mapContainer" class="container is-flex">
-            <div id="mainMap" class="m-3">
+        <div id="mapContainer" class="container is-flex-desktop">
+            <div id="mainMap">
             </div>
-            <div class="box m-3 blueDark column is-one-quarter is-flex is-align-items-center is-flex-direction-column">
+            <div class="box blueDark is-one-quarter-mobile is-align-items-center ">
                 <h3 class="title is-3 has-text-white">Optimised Route</h3>
                 <div id="stopsInOrder" class="is-flex is-align-items-center is-flex-direction-column is-justify-content-space-evenly">
-                    
                 </div>
             </div>
-            
         </div>
     </section>
     <!-- Previous Search Section -->
-    <section class="p-6">
+    <section id="prev-search" class="p-6">
         <nav class="panel container has-background-white">
             <p class="panel-heading blueDark has-text-white">
                 Previous Searches
@@ -192,8 +193,6 @@
                 </div> -->
         </nav>
     </section>
-    
-
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
