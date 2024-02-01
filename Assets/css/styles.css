@@ -4,9 +4,11 @@ body {
     padding: 0;
 }
 
-#form {
-    padding-top: 20px;
+#prev-search {
+    position: relative;
+    padding-top: 3em;
     scroll-margin-top: 5em;
+    min-height: 100vh;
 }
 
 #main-header {
@@ -35,7 +37,6 @@ body {
     width: 200px;
 }
 
-
 #progressBar{
     display: none;
 }
@@ -45,23 +46,27 @@ body {
     width: 100%;
 }
 
-.orangeDark{
+.orangeDark {
     background-color: #FF6B35;
 }
+
 .orangeLight {
     background-color: #FB966A;
 }
-.orangeLightest{
+
+.orangeLightest {
     background-color: #F7C59F;
 }
 
-.blueLight{
+.blueLight {
     background-color: #85AAB7;
 }
-.blueDark{
+
+.blueDark {
     background-color: #1A659E;
 }
-.blueDarkest{
+
+.blueDarkest {
     background-color: #004E89;
 }
 
@@ -75,15 +80,19 @@ body {
     box-shadow: 5px 5px 5px;
 }
 
+#mainMap {
+    border-radius: 5px;
+}
+
 .delete:hover {
     background-color: red;
 }
 
 /* Adjust padding for list items */
-ol {
+/* ol {
     list-style-position: inside;
     padding-top: 5px;
-}
+} */
 
 #removePrevious{
     display: none;
@@ -111,7 +120,7 @@ ol {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url(/AsTheCrowDrives/Assets/Images/manyCrows.jpg);
+    background: url(/Assets/Images/manyCrows.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -137,11 +146,8 @@ ol {
     margin-top: 1rem;
 }
 
-#arrow {
-    position: absolute;
-    bottom: -6em;
-}
-
-#arrow:hover {
-    cursor: pointer;
+#arrow-double {
+    position: relative;
+    bottom: -10rem;
+    cursor: pointer;  
 }
