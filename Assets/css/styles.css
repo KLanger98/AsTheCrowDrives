@@ -109,7 +109,7 @@ body {
 .hero {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,6 +148,6 @@ body {
 
 #arrow-double {
     position: relative;
-    bottom: -10rem;
+    bottom: -5rem;
     cursor: pointer;  
 }
