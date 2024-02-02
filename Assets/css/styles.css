@@ -1,5 +1,5 @@
 body {
-    background-color: #EFEFD0;
+    background-color: #EBEBEB;
     margin: 0;
     padding: 0;
 }
@@ -86,6 +86,10 @@ body {
 
 .delete:hover {
     background-color: red;
+}
+
+#autocomplete-container{
+    position: relative;
 }
 
 /* Adjust padding for list items */
