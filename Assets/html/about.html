@@ -6,27 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/Assets/css/about.css">
 </head>
 
 <body style="background-color:#EBEBEB">
-    <header class="title is-1 has-text-white" style="background-color: #004e89;">
-        <div class="is-flex is-justify-content-center">
-            <h1 class="has-text-centered"> As The Crow Drives </h1>
-            <a class="navbar-item">
-                <img src="Assets/Images/Crow_Icon.png" style="max-height: 80px">
-            </a>
-        </div>
-        <nav class="navbar is-flex is-justify-content-center" style="background-color: #004e89;">
-            <div class="navbar" style="background-color: #004e89;">
-                <ul class="is-flex is-justify-content-center">
-                    <li><a href="./Assets/html/about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
-                    <li><a href="./index.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Tool</a></li>
-                    <li><a href="./Assets/html/results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
-                </ul>
+    <header id="main-header">
+        <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #004e89;">
+            <div class="navbar-brand" style="min-height: 70px;">
+                <div class="navbar-item">
+                    <img src="/Assets/Images/logo.png" alt="Crow Icon" style="min-height: 5em;">
+                </div>
+                <a role="button" class="navbar-burger mr-4" style="min-height: 100px;" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>     
+            </div>
+            <div id="navMenu" class="navbar-menu" style="background-color: rgba(255, 255, 255, 0);">
+                <div class="navbar-end mr-4">
+                    <a class="navbar-item has-text-white is-size-4" href="/index.html">Tool</a>
+                    <a class="navbar-item has-text-white is-size-4" href="./index.html">Previous Searches</a>
+                </div>
             </div>
         </nav>
     </header>
-    
    
         <main>
 
@@ -34,67 +37,111 @@
                 <div class="hero-background" style="opacity: 1;"></div>
                 <div class="hero-body">
                     <div class="container has-text-centered">
-                        <button class="button is-info is-large mt-6" style="opacity: 1;">Start Navigating</button>
+                        <button onclick="window.location.href = 'index.html';" class="button is-info is-large mt-6" style="opacity: 1;">Start Navigating</button>
                     </div>
                 </div>
             </section>
         
-            <section class="section" style="background-color: #EBEBEB;">
-                <div class="container">
-                    <h2 class="title has-text-white">About Us</h2>
-                    <p class="has-text-white">AS THE CROW DRIVES was motivated by a physiotherapist seeking a solution to optimise his client visits efficiently. Faced with the challenge of managing appointments at multiple locations, Karl envisioned a tool that would streamline his route planning. This vision led to the creation of our webpage – a user-friendly platform designed to calculate the fastest route among up to 5 locations.
-
-                        Whether it's driving, walking, or riding a bike, our webpage provides a tailored solution for individuals who need to navigate multiple stops in their day. The intuitive input form allows users to add locations seamlessly, creating a list of destinations. Once the list is complete, users can generate a response that reveals the most time-saving route, empowering them to plan their day effectively.
-                        
-                        Our innovative features don't stop there. Users can choose to return to their origin point or conclude their journey at a specific location. As we evolve, we aim to introduce additional functionalities to enhance the user experience. Join us on this journey as we continue to simplify route optimisation, saving you valuable time and making your daily navigation a breeze..</p>
+            <section class="section" style="height: 25vh; background-color:#85AAB7;">
+                <div class="container" style="background-color: #85AAB7;">
+                    <h2 class="title">About Us</h2>
+                    <p class="subtitle">As the Crow Drives emerged from the pursuit of optimising client visits, inspired by the challenges faced by a physiotherapist. Our platform calculates the fastest routes among multiple locations for efficient navigation by car, on foot, or by bike. With a simple input form, users can effortlessly add destinations and receive the most time-saving route. Beyond basics, choose to return to the origin or conclude at a specific spot. Join us on this journey as we enhance route optimization, saving time and simplifying daily navigation</p>
                 </div>
             </section>
 
-            <section class="section" style="background-color: #EFEFD0;">
-                <div class="container">
-                    <h2 class="title">Our Features</h2>
+            <!-- Feature Section -->
+
+            <section class="section" style="height: 50vh; background-color:#EBEBEB;">
+                <div class="container long-column">
+                    <h2 class="title">Features</h2>
             
-                    <div class="columns" style="background-color: #1A659E;">
+                    <div class="columns" style="background-color: #EBEBEB;">
+                        <!-- Feature 1 -->
+                        <div class="column is-flex" style="height: 25vh;">
+                            <div class="box is-flex is-flex-direction-column is-align-items-center" style="background-image: url('/Assets/Images/Optimised_route.jpg'); background-size: cover; background-position: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div class="constrained-text" style="background-color: rgba(0, 0, 0, 0.5); color: white; font-weight: bold;">
+                                    <h3 class="subtitle has-text-weight-bold has-text-centered has-text-white">Optimised Route Planning</h3>
+                                    <p class="has-text-centered">Optimise time and fuel efficiency by identifying the most efficient route</p>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    
+                        <!-- Feature 2 -->
+                        <div class="column is-flex">
+                            <div class="box is-flex is-flex-direction-column is-align-items-center" style="background-image: url('/Assets/Images/Customised_route.jpg'); background-size: cover; background-position: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div class="constrained-text" style="background-color: rgba(0, 0, 0, 0.5); color: white; font-weight: bold;">
+                                    <h3 class="subtitle has-text-weight-bold has-text-centered has-text-white">Customised Road Routes</h3>
+                                    <p class="has-text-centered">Tailor your road route according to your preferred mode of transport</p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Feature 3 -->
+                        <div class="column is-flex">
+                            <div class="box is-flex is-flex-direction-column is-align-items-center" style="background-image: url('/Assets/Images/Navigate.jpg'); background-size: cover; background-position: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div class="constrained-text" style="background-color: rgba(0, 0, 0, 0.5); color: white; font-weight: bold;">
+                                    <h3 class="subtitle has-text-weight-bold has-text-centered has-text-white">Tailored Journey Options</h3>
+                                    <p class="has-text-centered">Explore flexible one-way and round trip options to tailor your journey</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </section>
+            
+
+            <!-- API Links -->
+            <section class="section py-5" style="height: 50vh; background-color: #EBEBEB;">
+                <div class="container">
+                    <h2 class="title">API Utilised</h2>
+            
+                    <div class="columns is flex">
                         <!-- Feature 1 -->
                         <div class="column">
-                            <div class="box">
-                                <h3 class="subtitle">Optimised Route</h3>
-                                <p>Details about Service 1.</p>
-                                <a href="#" class="button is-info">Learn More</a>
+                            <div class="box" style="background-color:#85AAB7; text-align: center;">
+                                <a href="https://geoapify.com" class="api-link">
+                                    <img src="/Assets/Images/geoapify-logo-API.png" alt="Geoapify Logo" style="width: 50%; height: auto; border-radius: 50px;" class="is-align-items-center">
+                                </a>
+                                <h3 class="subtitle has-text-centered is-size-3 has-text-white has-text-weight-bold">Geoapify</h3>
                             </div>
                         </div>
             
-                        <!-- Service 2 -->
+                        <!-- Feature 2 -->
                         <div class="column">
-                            <div class="box">
-                                <h3 class="subtitle">Road Route based on your choice of transport</h3>
-                                <p>Details about Service 2.</p>
-                                <a href="#" class="button is-info">Learn More</a>
+                            <div class="box" style="background-color:#85AAB7; text-align: center;">
+                                <a href="https://graphhopper.com" class="api-link">
+                                    <img src="/Assets/Images/graph_hopper.png" alt="Graph_hopper Logo" style="width: 50%; height: auto; border-radius: 50px;">
+                                </a>
+                                <h3 class="subtitle has-text-centered is-size-3 has-text-white has-text-weight-bold">GraphHopper</h3>
                             </div>
                         </div>
             
-                        <!-- Service 3 -->
+                        <!-- Feature 3 -->
                         <div class="column">
-                            <div class="box">
-                                <h3 class="subtitle">One Way or Round Trip</h3>
-                                <p>Details about Service 3.</p>
-                                <a href="#" class="button is-info">Learn More</a>
+                            <div class="box" style="background-color:#85AAB7; text-align: center;">
+                                <a href="https://leafletjs.com" class="api-link">
+                                    <img src="/Assets/Images/leaflet_logo.png" alt="Geoapify Logo" style="width: 50%; height: auto; border-radius: 50px;">
+                                </a>
+                                <h3 class="subtitle has-text-centered is-size-3 has-text-white has-text-weight-bold">Leaflet</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            
+            <!-- Mission Statement -->
         
-            <section class="section" style="background-color: #EFEFD0;">
-                <div class="container">
+            <section class="section" style="height: 20vh; background-color: #85AAB7;">
+                <div class="container" style="background-color: #85AAB7;">
                     <h2 class="title">Our Mission</h2>
-                    <p>Our mission is to empower individuals and businesses worldwide by providing cutting-edge route planning solutions. We are dedicated to simplifying the complexities of navigation, whether it's for everyday errands or grand adventures. Through our innovative technology, we aim to streamline route planning, saving time and enhancing the overall travel experience.</p>
+                    <p class="subtitle">Our mission is to empower individuals and businesses worldwide by providing cutting-edge route planning solutions. We are dedicated to simplifying the complexities of navigation, whether it's for everyday errands or grand adventures. Through our innovative technology, we aim to streamline route planning, saving time and enhancing the overall travel experience.</p>
                 </div>
             </section>
         
-            <!-- Add more sections as needed -->
-            <!-- Meet the Team Section   -->
-            <section class="section" style="background-color: #EFEFD0;">
+             <!-- Team Section   -->
+             <section class="section" style="background-color: #EBEBEB;">
                 <div class="container">
                     <h2 class="title has-text-centered">Meet the Team</h2>
 
@@ -102,13 +149,12 @@
                 <div class="columns">
                     <div class="column is-3">
                         <figure class="image is-128x128">
-                            <!-- Add the image URL for Team Member 1 -->
-                            <img src="team_member_1.jpg" alt="Team Member 1">
+                            <img src="/Assets/Images/Karl.jpg" alt="Team Member 1">
                         </figure>
                     </div>
                     <div class="column">
-                        <h3 class="subtitle">Karl Langer</h3>
-                        <p>Founder & CEO</p>
+                        <h3 class="subtitle has-text-weight-bold">Karl Langer</h3>
+                        <p>CEO & Front-end Developer</p>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est placeat asperiores dolorum suscipit facilis sequi alias dolore. Possimus harum quas totam, ea impedit inventore? Soluta reprehenderit rem natus repellendus. Incidunt.</p>
                     </div>
                 </div>
@@ -117,39 +163,37 @@
                 <div class="columns">
                     <div class="column is-3">
                         <figure class="image is-128x128">
-                            <!-- Add the image URL for Team Member 2 -->
-                            <img src="team_member_2.jpg" alt="Team Member 2">
+                            <img src="/Assets/Images/Badrul.png" alt="Team Member 2">
                         </figure>
                     </div>
                     <div class="column">
-                        <h3 class="subtitle">Badrul Borhanudin</h3>
-                        <p>Job Title</p>
+                        <h3 class="subtitle has-text-weight-bold">Badrul Borhanudin</h3>
+                        <p>Front-end Developer</p>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est placeat asperiores dolorum suscipit facilis sequi alias dolore. Possimus harum quas totam, ea impedit inventore? Soluta reprehenderit rem natus repellendus. Incidunt..</p>
                     </div>
                 </div>
 
-        <!-- Team Member 2 -->
+        <!-- Team Member 3 -->
                 <div class="columns">
                     <div class="column is-3">
                         <figure class="image is-128x128">
-                            <!-- Add the image URL for Team Member 2 -->
-                            <img src="team_member_2.jpg" alt="Team Member 2">
+                            <img src="/Assets/Images/Sam.png" alt="Team Member 3">
                         </figure>
                     </div>
                     <div class="column">
-                        <h3 class="subtitle">Samantha Samarua</h3>
-                        <p>Job Title</p>
+                        <h3 class="subtitle has-text-weight-bold">Samantha Samarua</h3>
+                        <p>Front-end Developer</p>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est placeat asperiores dolorum suscipit facilis sequi alias dolore. Possimus harum quas totam, ea impedit inventore? Soluta reprehenderit rem natus repellendus. Incidunt..</p>
                     </div>
                 </div>
 
-        <!-- Add more team members as needed -->
+
 
     </main>
 </body>
 
 <footer class=" has-text-centered has-text-white" style="background-color: #004e89 ; height: 100px;">
-    <p>&copy; 2024 AS THE CROW DRIVES </p>
+    <p class="has-text-weight-bold" style="font-size: 20px;">&copy; 2024 AS THE CROW DRIVES </p>
 </footer>
 
 </html>
