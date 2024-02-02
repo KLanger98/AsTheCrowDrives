@@ -91,6 +91,15 @@ body {
 #autocomplete-container{
     position: relative;
 }
+<<<<<<< HEAD
+=======
+
+/* Adjust padding for list items */
+/* ol {
+    list-style-position: inside;
+    padding-top: 5px;
+} */
+>>>>>>> 88268e1f1469e368cd9e88354b40673801b2d0e6
 
 #removePrevious{
     display: none;
@@ -104,6 +113,7 @@ body {
     padding-top: 20px;
 }
 
+<<<<<<< HEAD
 .hero {
     position: relative;
     width: 100vw;
@@ -149,3 +159,5 @@ body {
     bottom: -5rem;
     cursor: pointer;  
 }
+=======
+>>>>>>> 88268e1f1469e368cd9e88354b40673801b2d0e6

@@ -120,6 +120,11 @@ function createLocationsArray() {
     return locationsArray;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 88268e1f1469e368cd9e88354b40673801b2d0e6
 //Function to change which tab is active in the previous search panel
 function changeActiveTab(event){
     let tabs = $('.panel-tabs').children();
@@ -221,6 +226,10 @@ function launchOptimisationRequest() {
         return
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 88268e1f1469e368cd9e88354b40673801b2d0e6
     let vehicleName = $('input[name="vehicleType"]:checked').attr("data-transport");
     let vehicleIcon = $('input[name="vehicleType"]:checked').attr("data-icon");
     let vehicleType = $('input[name="vehicleType"]:checked').attr("data-vehicleDesc");
@@ -401,6 +410,10 @@ function loadOptimisedRoute(data){
         if(data.routeInfo.locations.length != (i + 1)){
             googleMapsURL = "https://www.google.com/maps/dir/?api=1&origin=" + data.routes[i].address.lat + "," + data.routes[i].address.lon + "&destination=" + data.routes[i + 1].address.lat + "," + data.routes[i + 1].address.lon + "&travelmode=" + travelMode;
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 88268e1f1469e368cd9e88354b40673801b2d0e6
 
         if(data.routeInfo.locations.length == (i + 1) && data.routeInfo.returnToStart == true){
             generateIcons(googleMapsURL);
@@ -416,6 +429,7 @@ function loadOptimisedRoute(data){
             marker.bindPopup('Start Here').openPopup();
         }
     }
+    
     
     //Organise polyline data to be added to map
     for(let j = 0; j < data.routeLines.length; j++){
@@ -451,6 +465,10 @@ function generateStop(position, num, data){
     $('#stopsInOrder').append(iconDiv, navDiv);
  }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 88268e1f1469e368cd9e88354b40673801b2d0e6
 //Load default map view
 var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
 
