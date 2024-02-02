@@ -86,9 +86,9 @@ function addressAutocomplete() {
         );
     });
 }
+
 // Initialize address autocomplete
 addressAutocomplete();
-
 
 function createLocationsArray() {
     //array where all the data will be stored
@@ -120,8 +120,6 @@ function createLocationsArray() {
         }
     return locationsArray;
 }
-
-
 
 //Function to change which tab is active in the previous search panel
 function changeActiveTab(event){
@@ -156,7 +154,6 @@ function loadPreviousSearches(){
     //Check which tab is active
     let activeTab = $('.panel-tabs').children('.is-active').attr('data-transportType');
 
-    
     //Load previous searches based on tab selected or search box
     
     for(let i = 0; i < previousSearches.length; i++){
@@ -224,7 +221,6 @@ function launchOptimisationRequest() {
         $('#errorMsgDiv').append($('<p>').text('You must add at least two locations').css('color', 'red'));
         return
     }
-
 
     let vehicleName = $('input[name="vehicleType"]:checked').attr("data-transport");
     let vehicleIcon = $('input[name="vehicleType"]:checked').attr("data-icon");
@@ -335,7 +331,6 @@ function fetchOptimizedRoute(routeInfo, addToLocal){
         })
 }
 
-
 let markerList = [];
 let polylineList = [];
 
@@ -407,7 +402,6 @@ function loadOptimisedRoute(data){
         if(data.routeInfo.locations.length != (i + 1)){
             googleMapsURL = "https://www.google.com/maps/dir/?api=1&origin=" + data.routes[i].address.lat + "," + data.routes[i].address.lon + "&destination=" + data.routes[i + 1].address.lat + "," + data.routes[i + 1].address.lon + "&travelmode=" + travelMode;
         }
-        
 
         if(data.routeInfo.locations.length == (i + 1) && data.routeInfo.returnToStart == true){
             generateIcons(googleMapsURL);
@@ -423,7 +417,6 @@ function loadOptimisedRoute(data){
             marker.bindPopup('Start Here').openPopup();
         }
     }
-    
     
     //Organise polyline data to be added to map
     for(let j = 0; j < data.routeLines.length; j++){
@@ -441,24 +434,51 @@ function loadOptimisedRoute(data){
    $('#progressBar').css("display", "none")
 }
 
-function generateStop(position, num, data){
-    let stopContainer =  $('<div>').addClass('is-flex is-align-items-center is-justify-content-center');
-    let numberIconContainer = $('<span>').addClass('icon is-large is-align-self-flex-start').append($('<i>').addClass('has-text-white fa-solid fa-' + (position + 1)));
-            
-    let stopDiv = $('<div>').addClass('box blueDarkest').append($('<h6>').addClass('is-6 title has-text-white').text(data.routeInfo.locations[num].id));
+// function generateStop(position, num, data) {
+//     let stopContainer = $('<div>').addClass('columns is-vcentered is-mobile');
+//     let numberIconContainer = $('<div>').addClass('column is-narrow').append($('<span>').addClass('icon is-large is-align-self-flex-start').append($('<i>').addClass('has-text-white fa-solid fa-' + (position + 1))));
+//     let stopDiv = $('<div>').addClass('column box blueDarkest').append($('<h6>').addClass('is-6 title has-text-white').text(data.routeInfo.locations[num].id));
 
-    stopContainer.append(numberIconContainer, stopDiv)
+//     stopContainer.append(numberIconContainer, stopDiv);
+//     $('#stopsInOrder').append(stopContainer);
+// }
+
+
+
+function generateStop(position, num, data, url) {
+    // Creating the stopContainer with the columns and blueDarkest classes
+    let stopContainer = $('<div>').addClass('columns blueDarkest m-1 is-flex is-align-items-center');
+
+    // Creating the numberIconContainer
+    let numberIconContainer = $('<span>').addClass('icon is-large').append($('<i>').addClass('ml-2 has-text-white fa-solid fa-' + (position + 1)));
+
+    // Creating the stopDiv
+    let stopDiv = $('<div>').addClass('column is-8').append(
+        $('<h6>').addClass('is-6 title has-text-white').text(data.routeInfo.locations[num].id)
+    );
+
+    // Calling the generateIcons function to create icons
+    let iconsContainer = generateIcons(url);
+
+    // Appending all elements to stopContainer
+    stopContainer.append(numberIconContainer, stopDiv, iconsContainer);
+
+    // Appending the stopContainer to #stopsInOrder
     $('#stopsInOrder').append(stopContainer);
- }
+}
 
- function generateIcons(url){
+function generateIcons(url) {
+    // Creating the iconsContainer
+    let iconsContainer = $('<div>').addClass('column is-3 is-flex is-justify-content-flex-end');
     let iconDiv = $('<a>').addClass("icon is-large").append($('<i>').addClass('fa-solid fa-arrow-down has-text-white'));
-
+    
+    // Creating a link for the route icon with the provided URL
     let navDiv = $('<a>').addClass("icon is-large").append($('<i>').addClass('fa-solid fa-route has-text-white')).attr('href', url);
+        
+    iconsContainer.append(iconDiv, navDiv);
 
-    $('#stopsInOrder').append(iconDiv, navDiv);
- }
-
+    return iconsContainer;
+}
 
 //Load default map view
 var mainMap = L.map('mainMap').setView([53.552, 9.999], 7);
