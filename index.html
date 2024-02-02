@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./Assets/css/styles.css">
 </head>
 <body>
+    <!-- Main header -->
     <header id="main-header">
         <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #004e89;">
             <div class="navbar-brand" style="min-height: 70px;">
@@ -35,34 +36,38 @@
                 <div class="navbar-end mr-4">
                     <a class="navbar-item has-text-white is-size-5" href="./Assets/html/about.html">About</a>
                     <a class="navbar-item has-text-white is-size-5" href="./index.html">Tool</a>
-                    <a class="navbar-item has-text-white is-size-5" href="./Assets/html/results.html">Result</a>
+                    <a class="navbar-item has-text-white is-size-5" href="./#prev-search">Previous Searches</a>
                 </div>
             </div>
         </nav>
     </header>
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-           <h1 class="hero-title">
+            <h1 class="hero-title is-size-2-desktop is-size-3-tablet is-size-4-mobile">
                 Looking to optimise your route?
            </h1>
-           <h2 class="hero-subtitle">
+           <h2 class="hero-subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">
                 We take all your required locations and return the optimised route!
            </h2>
          <span id="arrow-double" onclick="location.href='./#prev-search'">
-            <i class="fa-solid fa-angles-down fa-2xl" style="color: #ffffff;"></i>
-            <p>Previous Searches</p>
+            <i class="fa-solid fa-angles-down fa-xl" style="color: #ffffff;"></i>
+            <h6 class="title is-6" style="color: #ffffff;">Previous Searches</h6>
+            
         </span>
         </div>
     </section>
+    <!-- Generate Route Section -->
     <section class="section">   
         <div class="container">
             <div class="box">
-                <h1 class="title mb-3">Where are you heading to?</h1>
+                <h1 class="title mb-3 is-size-4-mobile">Where are you heading to?</h1>
                 <div class="control is-expanded">
                     <div class="ui-widget">
-                        <input type="text" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
+                        <input type="text is-size-4-mobile" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
                         <div id="autocomplete-container"></div>
                     </div>
+                    <div class="is-flex is-justify-content-flex-end"></div>
                     <div id="locationsContainer" class="mt-4">
                     </div>
                 </div>
@@ -71,7 +76,7 @@
                 <div class="columns is-vcentered is-mobile">
                     </div>
                     <div class="column is-12">
-                        <h2 class="title is-3 mb-2">Route details</h2>
+                        <h2 class="title is-3 mb-2 is-size-4-mobile">Route details</h2>
                         <!-- Radio buttons to select route type -->
                         <div class="control mb-3" id="routeTypeSelect">
                             <label class="radio">
@@ -86,7 +91,7 @@
                             </label>
                         </div>
                         <!-- Radio Buttons to select mode of transport -->
-                        <h4 class="title is-4 mb-3">Mode of transport:</h4>
+                        <h4 class="title is-3 mb-2 is-size-4-mobile">Mode of transport:</h4>
                         <div class="control mb-3" id="transportModeSelect">
                             <label class="radio">
                                 <input type="radio" name="vehicleType" checked data-transport="my-car" data-icon="fa-solid fa-car-side"
@@ -109,7 +114,7 @@
                             </label>
                         </div>
                         <div class="control is-expanded">
-                            <h3 class="title is-4 mb-3">Name of route</h3>
+                            <h3 class="title is-3 mb-2 is-size-4-mobile">Name of route</h3>
                             <input class="input" type="text" id="routeTitle" placeholder="i.e. 'Rome', 'Melbourne Holiday', 'Bike ride'">
                         </div>
                         <div id="errorMsgDiv"></div>
@@ -119,54 +124,61 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
-    <section class="blueLight p-6">
+    <!-- Optimised Route Section -->
+    <section class="section" style="background-color: #EBEBEB">
         <div class="box container blueDarkest is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
-            <h2 id="optimisedHeading" class="is-2 title has-text-white">Pending Title</h2>
+            <h2 id="optimisedHeading" class="is-size-3-desktop title has-text-white is-size-4-mobile">Generating Optimised Route</h2>
         </div>
-        <progress class="progress is-large is-info" max="100" id="progressBar">60%</progress>
+        <progress class="progress is-large is-info" id="progressBar">60%</progress>
         <div class="box container">
-            <nav class="level">
+            <nav class="level is-tablet">
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Total KMs</p>
-                        <p class="title" id="totalKmsMain"></p>
+                        <p class="heading is-clipped">Total KMs</p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="totalKmsMain"></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Transport</p>
-                        <p class="title" id="transportTypeMain"></p>
+                        <p class="heading is-clipped">Transport</p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="transportTypeMain"></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Travel Time</p>
-                        <p class="title" id="travelTimeMain"></p>
+                        <p class="heading is-clipped">Travel Time</p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="travelTimeMain"></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
-                        <p class="heading">Number of stops</p>
-                        <p class="title" id="stopsMain"></p>
+                        <p class="heading is-clipped">Number of stops</p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="stopsMain"></p>
                     </div>
                 </div>
             </nav>
         </div>
-        <!-- Mapped optimised route -->
-        <div id="mapContainer" class="container is-flex-desktop">
-            <div id="mainMap">
-            </div>
-            <div class="box blueDark is-one-quarter-mobile is-align-items-center ">
-                <h3 class="title is-3 has-text-white">Optimised Route</h3>
-                <div id="stopsInOrder" class="is-flex is-align-items-center is-flex-direction-column is-justify-content-space-evenly">
+            <div id="mapContainer" class="container">
+                <div class="columns">
+                <div class="column is-7 is-flex">
+                  <div id="mainMap" style="width: 100%; height: 400px;">
+                  </div>
                 </div>
+                <div class="column is-5">
+                  <div class="box blueDark is-align-items-center">
+                    <h3 class="title is-4 has-text-white">Optimised Route</h3>
+                    <div class="columns">
+                      <div id="stopsInOrder" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
     </section>
     <!-- Previous Search Section -->
-    <section id="prev-search" class="p-6">
+    <section class="section" id="prev-search">
         <nav class="panel container has-background-white">
             <p class="panel-heading blueDark has-text-white">
                 Previous Searches
