@@ -1,40 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <!-- jQuery UI CDN -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-    <!-- Leaflet CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" rel="stylesheet">
-    <!-- Font Awesome CDN -->
-    <script src="https://kit.fontawesome.com/fcc5b5924a.js" crossorigin="anonymous"></script>
-    <!-- CSS link -->
-    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
+
+<body style="background-color:#EBEBEB">
     <header class="title is-1 has-text-white" style="background-color: #004e89;">
         <div class="is-flex is-justify-content-center">
             <h1 class="has-text-centered"> As The Crow Drives </h1>
             <a class="navbar-item">
-                <img src="../Images/Crow_Icon.png" style="max-height: 80px">
+                <img src="Assets/Images/Crow_Icon.png" style="max-height: 80px">
             </a>
         </div>
-    
         <nav class="navbar is-flex is-justify-content-center" style="background-color: #004e89;">
             <div class="navbar" style="background-color: #004e89;">
                 <ul class="is-flex is-justify-content-center">
-                    <li><a href="./about.html" class="navbar-item title is-4 has-text-white has-text-centered"
-                            style="background-color: #004e89;">About</a></li>
-                    <li><a href="../../index.html" class="navbar-item title is-4 has-text-white has-text-centered"
-                            style="background-color: #004e89;">Tool</a></li>
-                    <li><a href="./results.html" class="navbar-item title is-4 has-text-white has-text-centered"
-                            style="background-color: #004e89;">Result</a></li>
+                    <li><a href="./Assets/html/about.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">About</a></li>
+                    <li><a href="./index.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Tool</a></li>
+                    <li><a href="./Assets/html/results.html" class="navbar-item title is-4 has-text-white has-text-centered" style="background-color: #004e89;">Result</a></li>
                 </ul>
             </div>
         </nav>
     </header>
+    
+   
+        <main>
+
+            <section class="hero is-halfheight mt-0" style="background-image: url('/Assets/Images/Map_Idea_1.jpg'); background-position: center;">
+                <div class="hero-background" style="opacity: 1;"></div>
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <button class="button is-info is-large mt-6" style="opacity: 1;">Start Navigating</button>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="section" style="background-color: #EBEBEB;">
+                <div class="container">
+                    <h2 class="title has-text-white">About Us</h2>
+                    <p class="has-text-white">AS THE CROW DRIVES was motivated by a physiotherapist seeking a solution to optimise his client visits efficiently. Faced with the challenge of managing appointments at multiple locations, Karl envisioned a tool that would streamline his route planning. This vision led to the creation of our webpage – a user-friendly platform designed to calculate the fastest route among up to 5 locations.
+
+                        Whether it's driving, walking, or riding a bike, our webpage provides a tailored solution for individuals who need to navigate multiple stops in their day. The intuitive input form allows users to add locations seamlessly, creating a list of destinations. Once the list is complete, users can generate a response that reveals the most time-saving route, empowering them to plan their day effectively.
+                        
+                        Our innovative features don't stop there. Users can choose to return to their origin point or conclude their journey at a specific location. As we evolve, we aim to introduce additional functionalities to enhance the user experience. Join us on this journey as we continue to simplify route optimisation, saving you valuable time and making your daily navigation a breeze..</p>
+                </div>
+            </section>
+
+            <section class="section" style="background-color: #EFEFD0;">
+                <div class="container">
+                    <h2 class="title">Our Features</h2>
+            
+                    <div class="columns" style="background-color: #1A659E;">
+                        <!-- Feature 1 -->
+                        <div class="column">
+                            <div class="box">
+                                <h3 class="subtitle">Optimised Route</h3>
+                                <p>Details about Service 1.</p>
+                                <a href="#" class="button is-info">Learn More</a>
+                            </div>
+                        </div>
+            
+                        <!-- Service 2 -->
+                        <div class="column">
+                            <div class="box">
+                                <h3 class="subtitle">Road Route based on your choice of transport</h3>
+                                <p>Details about Service 2.</p>
+                                <a href="#" class="button is-info">Learn More</a>
+                            </div>
+                        </div>
+            
+                        <!-- Service 3 -->
+                        <div class="column">
+                            <div class="box">
+                                <h3 class="subtitle">One Way or Round Trip</h3>
+                                <p>Details about Service 3.</p>
+                                <a href="#" class="button is-info">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="section" style="background-color: #EFEFD0;">
+                <div class="container">
+                    <h2 class="title">Our Mission</h2>
+                    <p>Our mission is to empower individuals and businesses worldwide by providing cutting-edge route planning solutions. We are dedicated to simplifying the complexities of navigation, whether it's for everyday errands or grand adventures. Through our innovative technology, we aim to streamline route planning, saving time and enhancing the overall travel experience.</p>
+                </div>
+            </section>
+        
+            <!-- Add more sections as needed -->
+            <!-- Meet the Team Section   -->
+            <section class="section" style="background-color: #EFEFD0;">
+                <div class="container">
+                    <h2 class="title has-text-centered">Meet the Team</h2>
+
+        <!-- Team Member 1 -->
+                <div class="columns">
+                    <div class="column is-3">
+                        <figure class="image is-128x128">
+                            <!-- Add the image URL for Team Member 1 -->
+                            <img src="team_member_1.jpg" alt="Team Member 1">
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <h3 class="subtitle">Karl Langer</h3>
+                        <p>Founder & CEO</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est placeat asperiores dolorum suscipit facilis sequi alias dolore. Possimus harum quas totam, ea impedit inventore? Soluta reprehenderit rem natus repellendus. Incidunt.</p>
+                    </div>
+                </div>
+
+        <!-- Team Member 2 -->
+                <div class="columns">
+                    <div class="column is-3">
+                        <figure class="image is-128x128">
+                            <!-- Add the image URL for Team Member 2 -->
+                            <img src="team_member_2.jpg" alt="Team Member 2">
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <h3 class="subtitle">Badrul Borhanudin</h3>
+                        <p>Job Title</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est placeat asperiores dolorum suscipit facilis sequi alias dolore. Possimus harum quas totam, ea impedit inventore? Soluta reprehenderit rem natus repellendus. Incidunt..</p>
+                    </div>
+                </div>
+
+        <!-- Team Member 2 -->
+                <div class="columns">
+                    <div class="column is-3">
+                        <figure class="image is-128x128">
+                            <!-- Add the image URL for Team Member 2 -->
+                            <img src="team_member_2.jpg" alt="Team Member 2">
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <h3 class="subtitle">Samantha Samarua</h3>
+                        <p>Job Title</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est placeat asperiores dolorum suscipit facilis sequi alias dolore. Possimus harum quas totam, ea impedit inventore? Soluta reprehenderit rem natus repellendus. Incidunt..</p>
+                    </div>
+                </div>
+
+        <!-- Add more team members as needed -->
+
+    </main>
 </body>
+
+<footer class=" has-text-centered has-text-white" style="background-color: #004e89 ; height: 100px;">
+    <p>&copy; 2024 AS THE CROW DRIVES </p>
+</footer>
+
 </html>

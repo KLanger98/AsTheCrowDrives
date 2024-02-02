@@ -1,5 +1,5 @@
 body {
-    background-color: #EFEFD0;
+    background-color: #EBEBEB;
     margin: 0;
     padding: 0;
 }
@@ -88,11 +88,9 @@ body {
     background-color: red;
 }
 
-/* Adjust padding for list items */
-/* ol {
-    list-style-position: inside;
-    padding-top: 5px;
-} */
+#autocomplete-container{
+    position: relative;
+}
 
 #removePrevious{
     display: none;

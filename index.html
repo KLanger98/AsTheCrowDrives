@@ -43,27 +43,27 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title is-size-2-desktop is-size-3-tablet is-size-4-mobile">
-                I have no idea what to write here!
-            </h1>
-            <h2 class="hero-subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">
-                We offer the best route to take and tailor-made trips!
-            </h2>
-            <span id="arrow-double" onclick="location.href='./#prev-search'">
-                <i class="fa-solid fa-angles-down fa-xl" style="color: #ffffff;"></i>
-                <p class="is-size-5-tablet is-size-6-mobile">Previous Searches</p>
-            </span>
+                Looking to optimise your route?
+           </h1>
+           <h2 class="hero-subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">
+                We take all your required locations and return the optimised route!
+           </h2>
+           <span id="arrow-double" onclick="location.href='./#prev-search'">
+            <i class="fa-solid fa-angles-down fa-xl" style="color: #ffffff;"></i>
+            <p class="is-size-5-tablet is-size-6-mobile">Previous Searches</p>
+        </span>
         </div>
     </section>
-    
     <section class="section">   
         <div class="container">
             <div class="box">
                 <h1 class="title mb-3">Where are you heading to?</h1>
                 <div class="control is-expanded">
-                    <div id="autocomplete-container">
+                    <div class="ui-widget">
                         <input type="text" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
-                        <div id="locationsContainer">
-                        </div>
+                        <div id="autocomplete-container"></div>
+                    </div>
+                    <div id="locationsContainer" class="mt-4">
                     </div>
                 </div>
     </div>
@@ -180,18 +180,13 @@
                 </p>
             </div>
             <p class="panel-tabs">
-                <a class="is-active" onclick="changeActiveTab(event)">All</a>
-                <a onclick="changeActiveTab(event)">Car</a>
-                <a onclick="changeActiveTab(event)">Bike</a>
-                <a onclick="changeActiveTab(event)">Walk</a>
+                <a class="is-active" data-transportType="all" onclick="changeActiveTab(event)">All</a>
+                <a data-transportType="car" onclick="changeActiveTab(event)">Car</a>
+                <a data-transportType="bike" onclick="changeActiveTab(event)">Bike</a>
+                <a data-transportType="foot" onclick="changeActiveTab(event)">Walk</a>
             </p>
             <div id="previousSearchContent">
             </div>
-            <!-- <div class="panel-block  is-white">
-                    <button class="button is-link is-outlined is-fullwidth">
-                        Delete Selected Routes
-                    </button>
-                </div> -->
         </nav>
     </section>
     <!-- CDN for jQuery -->
@@ -200,7 +195,6 @@
     <!-- CDN for jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Link to local Javascript file -->
-    <script src="./Assets/js/autocomplete.js"></script>
     <script src="./Assets/js/script.js"></script>
 </body>
 </html>
