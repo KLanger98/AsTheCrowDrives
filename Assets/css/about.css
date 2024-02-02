@@ -1,0 +1,60 @@
+
+
+
+
+/* Home Page - API Links */
+
+.long-column {
+    height: 800px;
+}
+
+.constrained-text {
+    max-width: 400px;
+    margin: 0 auto; 
+}
+
+.same-size-image {
+    width: 100%;
+    height: auto;
+    max-width: 300px; 
+}
+
+.is-flex {
+    display: flex;
+}
+
+.is-flex-direction-column {
+    flex-direction: column;
+}
+
+.is-align-items-center {
+    align-items: center;
+} 
+
+/* API Section */
+
+.api-link {
+    color: #fff; /* Default text color */
+    text-decoration: none; /* Remove underline by default */
+    transition: transform 0.2s; /* Add smooth transition for visual effect */
+}
+
+.api-link:hover {
+    background-color: grey; /* Text color on hover */
+    text-decoration: underline; /* Underline on hover */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.api-link:active {
+    transform: scale(0.95); /* Scale down when pressed */
+}
+
+/* Sections */
+
+.section {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.section:hover {
+    background-color: black; /* New background color on hover */
+}
