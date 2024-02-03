@@ -16,19 +16,37 @@ If the webpage is throwing errors for routes greater than 5, it is likely that t
 
 ## Usage
 
-When loading the webpage you will be presented with the ...
+When loading the webpage you will be presented with the Tool page:
 
-You can then scroll down to the input form where you can use the autocomplete input box to select up to 8 locations.
+<img src="./Assets/Images/tool-demo-1.png" alt="AsTheCrowDrives app demo" width="700"/>
 
-Once Selected, you can specifify details about your trip including whether or not it's a round trip and what mode of transport you will be using.
+1. You can then scroll down to the input form where you can use the autocomplete input box to select up to 8 locations.
 
-Then, once completed, pressing the 'Generate Route' Button will generate your optimised route and display it in the display area below as shown.
+<img src="./Assets/Images/tool-demo-2.png" alt="AsTheCrowDrives autocomplete demo" width="700"/>
 
-The display area will order every location from start to end as to what is most efficient way to visit every stop. Key Information about the trip is detailed including your chosen transport method, how long the trip will take (without stopping), how many Kilometers the trip is and how many stops will be taken.
+2. Once Selected, you can specifify details about your trip including whether or not it's a round trip and what mode of transport you will be using.
 
-At the bottom of the tool page you will also see a list of 'Previous Searches', this list will display 5 example routes by default and update with any of your searched routes as you begin to create them. Clicking on these previous searches will load them into the display area for you to study.
+<img src="./Assets/Images/tool-demo-3.png" alt="AsTheCrowDrives mode of transport demo" width="700"/>
 
-In the display area, you can click on the maps button found next to every suggested stop to redirect you to google maps so you can begin navigating. Don't forget to return back to fnd out which stop is the most effective to visit next!
+3. Then, once completed, pressing the 'Generate Route' Button will generate your optimised route and display it in the display area below as shown.
+
+<img src="./Assets/Images/tool-demo-4.png" alt="AsTheCrowDrives optimised route demo" width="700"/>
+
+4. The display area will order every location from start to end as to what is most efficient way to visit every stop. Key Information about the trip is detailed including your chosen transport method, how long the trip will take (without stopping), how many Kilometers the trip is and how many stops will be taken.
+
+<img src="./Assets/Images/tool-demo-5.png" alt="AsTheCrowDrives efficient route demo" width="700"/>
+
+5. At the bottom of the tool page you will also see a list of 'Previous Searches', this list will display 5 example routes by default and update with any of your searched routes as you begin to create them. Clicking on these previous searches will load them into the display area for you to study.
+
+<img src="./Assets/Images/tool-demo-6.png" alt="AsTheCrowDrives example routes demo" width="700"/>
+
+6. In the display area, you can click on the maps button found next to every suggested stop to redirect you to google maps so you can begin navigating. Don't forget to return back to find out which stop is the most effective to visit next!
+
+<img src="./Assets/Images/tool-demo-7.png" alt="AsTheCrowDrives click to redirect demo" width="700"/>
+
+<img src="./Assets/Images/tool-demo-8.png" alt="AsTheCrowDrives Google Maps redirect demo" width="700"/>
+
+
 
 ## Credits
 

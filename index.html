@@ -58,16 +58,16 @@
         </div>
     </section>
     <!-- Generate Route Section -->
-    <section class="section">   
+    <section class="section">
         <div class="is-flex is-justify-content-center container mb-6">
-            <h1 class="title is-2 has-text-dark">Optimise Your Route Here</h1>
-            <span class="icon is-large  ml-3">
-                <i class="fa-solid fa-compass-drafting fas fa-2x"></i>
-            </span>
+            <h1 class="title is-2 is-size-4-mobile">
+                Optimise Your Route Here
+                <i class="ml-3 fa-compass-drafting fas fa-lg is-size-4-mobile is-size-2-tablet"></i>
+            </h1>
         </div>
         <div class="container">
             <div class="box">
-                <h1 class="title mb-3 is-size-4-mobile">Where are you heading to?</h1>
+                <h1 class="title mb-3 is-size-5-mobile">Where are you heading to?</h1>
                 <div class="control is-expanded">
                     <div class="ui-widget">
                         <input type="text is-size-4-mobile" class="input" placeholder="Enter the address here (up to 8)" id="inputLocation">
@@ -147,11 +147,12 @@
     <!-- Optimised Route Section -->
     <section class="section" style="background-color: #7D97B3" id="optimisedRoute">
         <div class="is-flex is-justify-content-center container mb-6">
-            <h1 class="title is-2 has-text-white">Your Optimised Route</h1>
-            <span class="icon is-large  ml-3 has-text-white">
-                <i class="fa-solid fa-earth-americas fas fa-2x"></i>
-            </span>
+            <h1 class="title is-2 is-size-4-mobile has-text-white">
+                Your Optimised Route
+                <i class="ml-3 fa-solid fa-earth-americas fas fa-lg is-size-4-mobile is-size-2-tablet"></i>
+            </h1>
         </div>
+
         <div class="box container blueDarkest is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
             <h2 id="optimisedHeading" class="is-size-3-desktop title has-text-white is-size-4-mobile">Generating Optimised Route</h2>
         </div>
@@ -161,25 +162,25 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-clipped">Total KMs</p>
-                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="totalKmsMain"></p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-5-mobile" id="totalKmsMain"></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-clipped">Transport</p>
-                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="transportTypeMain"></p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-5-mobile" id="transportTypeMain"></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-clipped">Travel Time</p>
-                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="travelTimeMain"></p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-5-mobile" id="travelTimeMain"></p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-clipped">Number of stops</p>
-                        <p class="title is-size-3-desktop is-size-5-tablet is-size-6-mobile" id="stopsMain"></p>
+                        <p class="title is-size-3-desktop is-size-5-tablet is-size-5-mobile" id="stopsMain"></p>
                     </div>
                 </div>
             </nav>
@@ -194,7 +195,7 @@
                   <div class="box blueDark" id="locationsOrdered">
                     <h3 class="title is-4 has-text-white">Optimised Route</h3>
                     <div class="columns">
-                      <div id="stopsInOrder" class=" is-flex is-align-items-flex-start is-flex-direction-column">
+                      <div id="stopsInOrder" class="is-flex is-align-items-flex-start is-flex-direction-column">
                       </div>
                     </div>
                   </div>
@@ -205,14 +206,13 @@
     <!-- Previous Search Section -->
     <section class="section" id="prev-search">
         <div class="is-flex is-justify-content-center container mb-6">
-            <h1 class="title is-2 has-text-dark">Previous Searches</h1>
-            <span class="icon is-large  ml-3">
-                <i class="fa-solid fa-binoculars fas fa-2x"></i>
-            </span>
+            <h1 class="title is-2 is-size-4-mobile">
+                Previous Searches
+                <i class="ml-3 fa-solid fa-binoculars fas fa-lg is-size-4-mobile is-size-2-tablet"></i>
+            </h1>
         </div>
         <nav class="panel container has-background-white">
             <p class="panel-heading blueDark has-text-white">
-                
             </p>
             <div class="panel-block">
                 <p class="control has-icons-left">
@@ -223,17 +223,17 @@
                 </p>
             </div>
             <p class="panel-tabs">
-                <a class="is-active is-size-5" data-transportType="all"  onclick="changeActiveTab(event)">All</a>
-                <a data-transportType="car" class="is-size-5" onclick="changeActiveTab(event)">Car</a>
-                <a data-transportType="bike" class="is-size-5" onclick="changeActiveTab(event)">Bike</a>
-                <a data-transportType="foot" class="is-size-5" onclick="changeActiveTab(event)">Walk</a>
+                <a class="is-active is-size-5-desktop" data-transportType="all"  onclick="changeActiveTab(event)">All</a>
+                <a data-transportType="car" class="is-size-5-desktop" onclick="changeActiveTab(event)">Car</a>
+                <a data-transportType="bike" class="is-size-5-desktop" onclick="changeActiveTab(event)">Bike</a>
+                <a data-transportType="foot" class="is-size-5-desktop" onclick="changeActiveTab(event)">Walk</a>
             </p>
             <div id="previousSearchContent">
             </div>
         </nav>
     </section>
     <footer class=" has-text-centered has-text-white" style="background-color: #004e89 ; height: 100px;">
-        <p class="has-text-weight-bold" style="font-size: 20px;">&copy; 2024 AS THE CROW DRIVES </p>
+        <p class="has-text-weight-bold is-size-6-mobile" style="font-size: 20px;">&copy; 2024 AS THE CROW DRIVES </p>
     </footer>
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="

@@ -177,7 +177,7 @@ function loadPreviousSearches(){
         span.append(icon);
         let anchor = $('<a>').addClass('panel-block is-flex is-justify-content-space-between').attr('id', 'prevSearchLi')
         anchor.attr("data-all", JSON.stringify(previousSearches[i])).css('height', "50px")
-        let text = $('<p>').text(previousSearches[i].routeInfo.routeTitle).addClass('is-size-5');
+        let text = $('<p>').text(previousSearches[i].routeInfo.routeTitle).addClass('is-size-5-desktop');
         let button = $('<button>').addClass('button is-danger').text('Remove').attr('id', "removePrevious").on('click', removeSearch);
 
         div.append(span, text);
