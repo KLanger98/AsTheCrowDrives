@@ -4,7 +4,7 @@
         "locations": [
             {
                 "id": "Times Square, New York, NY 10036, United States of America",
-                "name": "visit_Times Square, New York, NY 10036, United States of America",
+                "name": "Times Square, New York, NY 10036, United States of America",
                 "address": {
                     "location_id": "Times Square, New York, NY 10036, United States of America",
                     "lon": -73.98597092538824,
@@ -13,7 +13,7 @@
             },
             {
                 "id": "Rockefeller Center, 45 Rockefeller Plaza, New York, NY 10111, United States of America",
-                "name": "visit_Rockefeller Center, 45 Rockefeller Plaza, New York, NY 10111, United States of America",
+                "name": "Rockefeller Center, 45 Rockefeller Plaza, New York, NY 10111, United States of America",
                 "address": {
                     "location_id": "Rockefeller Center, 45 Rockefeller Plaza, New York, NY 10111, United States of America",
                     "lon": -73.97995686116377,
@@ -22,7 +22,7 @@
             },
             {
                 "id": "Statue of Liberty, New York, NY 10004, United States of America",
-                "name": "visit_Statue of Liberty, New York, NY 10004, United States of America",
+                "name": "Statue of Liberty, New York, NY 10004, United States of America",
                 "address": {
                     "location_id": "Statue of Liberty, New York, NY 10004, United States of America",
                     "lon": -74.044801,
@@ -31,7 +31,7 @@
             },
             {
                 "id": "Empire State Building, 350 5th Avenue, New York, NY 10018, United States of America",
-                "name": "visit_Empire State Building, 350 5th Avenue, New York, NY 10018, United States of America",
+                "name": "Empire State Building, 350 5th Avenue, New York, NY 10018, United States of America",
                 "address": {
                     "location_id": "Empire State Building, 350 5th Avenue, New York, NY 10018, United States of America",
                     "lon": -73.98565890160751,
@@ -40,7 +40,7 @@
             },
             {
                 "id": "Chinatown, New York, NY 10013, United States of America",
-                "name": "visit_Chinatown, New York, NY 10013, United States of America",
+                "name": "Chinatown, New York, NY 10013, United States of America",
                 "address": {
                     "location_id": "Chinatown, New York, NY 10013, United States of America",
                     "lon": -73.9962504,
@@ -49,7 +49,7 @@
             },
             {
                 "id": "Little Italy, Manhattan, New York, NY, United States of America",
-                "name": "visit_Little Italy, Manhattan, New York, NY, United States of America",
+                "name": "Little Italy, Manhattan, New York, NY, United States of America",
                 "address": {
                     "location_id": "Little Italy, Manhattan, New York, NY, United States of America",
                     "lon": -73.9982152,
@@ -67,9 +67,9 @@
     "routes": [
         {
             "type": "start",
-            "location_id": "visit_Times Square, New York, NY 10036, United States of America",
+            "location_id": "Times Square, New York, NY 10036, United States of America",
             "address": {
-                "location_id": "visit_Times Square, New York, NY 10036, United States of America",
+                "location_id": "Times Square, New York, NY 10036, United States of America",
                 "lat": 40.75701,
                 "lon": -73.98597
             },

@@ -4,9 +4,6 @@
 
 /* Home Page - API Links */
 
-.long-column {
-    height: 800px;
-}
 
 .constrained-text {
     max-width: 400px;
@@ -19,17 +16,6 @@
     max-width: 300px; 
 }
 
-.is-flex {
-    display: flex;
-}
-
-.is-flex-direction-column {
-    flex-direction: column;
-}
-
-.is-align-items-center {
-    align-items: center;
-} 
 
 /* API Section */
 
@@ -57,4 +43,8 @@
 
 .section:hover {
     background-color: black; /* New background color on hover */
+}
+
+figure > img{
+    height: 500px;
 }

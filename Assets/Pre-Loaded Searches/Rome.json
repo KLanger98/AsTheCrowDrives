@@ -4,7 +4,7 @@
         "locations": [
             {
                 "id": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
-                "name": "visit_Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
+                "name": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
                 "address": {
                     "location_id": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
                     "lon": 12.493087103595503,
@@ -13,7 +13,7 @@
             },
             {
                 "id": "Trevi Fountain, Piazza di Trevi, 00187 Rome RM, Italy",
-                "name": "visit_Trevi Fountain, Piazza di Trevi, 00187 Rome RM, Italy",
+                "name": "Trevi Fountain, Piazza di Trevi, 00187 Rome RM, Italy",
                 "address": {
                     "location_id": "Trevi Fountain, Piazza di Trevi, 00187 Rome RM, Italy",
                     "lon": 12.483284842339874,
@@ -22,7 +22,7 @@
             },
             {
                 "id": "Pantheon, Piazza della Rotonda, 00186 Rome RM, Italy",
-                "name": "visit_Pantheon, Piazza della Rotonda, 00186 Rome RM, Italy",
+                "name": "Pantheon, Piazza della Rotonda, 00186 Rome RM, Italy",
                 "address": {
                     "location_id": "Pantheon, Piazza della Rotonda, 00186 Rome RM, Italy",
                     "lon": 12.476833414483862,
@@ -31,7 +31,7 @@
             },
             {
                 "id": "Vatican City",
-                "name": "visit_Vatican City",
+                "name": "Vatican City",
                 "address": {
                     "location_id": "Vatican City",
                     "lon": 12.4528349,
@@ -40,7 +40,7 @@
             },
             {
                 "id": "Spanish Steps, Scalinata della Trinità dei Monti, 00187 Rome RM, Italy",
-                "name": "visit_Spanish Steps, Scalinata della Trinità dei Monti, 00187 Rome RM, Italy",
+                "name": "Spanish Steps, Scalinata della Trinità dei Monti, 00187 Rome RM, Italy",
                 "address": {
                     "location_id": "Spanish Steps, Scalinata della Trinità dei Monti, 00187 Rome RM, Italy",
                     "lon": 12.482872578791092,
@@ -49,7 +49,7 @@
             },
             {
                 "id": "Roman Forum, Via delle Carine, 00184 Rome RM, Italy",
-                "name": "visit_Roman Forum, Via delle Carine, 00184 Rome RM, Italy",
+                "name": "Roman Forum, Via delle Carine, 00184 Rome RM, Italy",
                 "address": {
                     "location_id": "Roman Forum, Via delle Carine, 00184 Rome RM, Italy",
                     "lon": 12.48671195744897,
@@ -58,7 +58,7 @@
             },
             {
                 "id": "Seu Pizza Illuminati, Via Angelo Bargoni, 10-18, 00153 Rome RM, Italy",
-                "name": "visit_Seu Pizza Illuminati, Via Angelo Bargoni, 10-18, 00153 Rome RM, Italy",
+                "name": "Seu Pizza Illuminati, Via Angelo Bargoni, 10-18, 00153 Rome RM, Italy",
                 "address": {
                     "location_id": "Seu Pizza Illuminati, Via Angelo Bargoni, 10-18, 00153 Rome RM, Italy",
                     "lon": 12.4683504,
@@ -76,9 +76,9 @@
     "routes": [
         {
             "type": "start",
-            "location_id": "visit_Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
+            "location_id": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
             "address": {
-                "location_id": "visit_Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
+                "location_id": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
                 "lat": 41.89026,
                 "lon": 12.49309
             },
@@ -240,9 +240,9 @@
         },
         {
             "type": "end",
-            "location_id": "visit_Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
+            "location_id": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
             "address": {
-                "location_id": "visit_Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
+                "location_id": "Colosseum, Piazza del Colosseo, 00184 Rome RM, Italy",
                 "lat": 41.89026,
                 "lon": 12.49309
             },

@@ -34,8 +34,8 @@
             </div>
             <div id="navMenu" class="navbar-menu" style="background-color: rgba(255, 255, 255, 0);">
                 <div class="navbar-end mr-4">
-                    <a class="navbar-item has-text-white is-size-5" href="./Assets/html/about.html">About</a>
-                    <a class="navbar-item has-text-white is-size-5" href="./index.html">Tool</a>
+                    <a class="navbar-item has-text-white is-size-5" href="./about.html">About</a>
+                    <a class="navbar-item has-text-white is-size-5" href="index.html">Tool</a>
                     <a class="navbar-item has-text-white is-size-5" href="./#prev-search">Previous Searches</a>
                 </div>
             </div>
@@ -59,6 +59,12 @@
     </section>
     <!-- Generate Route Section -->
     <section class="section">   
+        <div class="is-flex is-justify-content-center container mb-6">
+            <h1 class="title is-2 has-text-dark">Optimise Your Route Here</h1>
+            <span class="icon is-large  ml-3">
+                <i class="fa-solid fa-compass-drafting fas fa-2x"></i>
+            </span>
+        </div>
         <div class="container">
             <div class="box">
                 <h1 class="title mb-3 is-size-4-mobile">Where are you heading to?</h1>
@@ -125,12 +131,31 @@
                 </div>
             </div>
     </section>
+    <!-- Error Modal Messages -->
+    <div id="dialog-message" title="No-Title" style="display: none;">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Your route must have a title
+        </p>
+    </div>
+    <div id="minimalLocationsError" title="No-Title" style="display: none;">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            You must add at least two locations for optimisation
+        </p>
+    </div>
     <!-- Optimised Route Section -->
-    <section class="section" style="background-color: #EBEBEB">
+    <section class="section" style="background-color: #7D97B3" id="optimisedRoute">
+        <div class="is-flex is-justify-content-center container mb-6">
+            <h1 class="title is-2 has-text-white">Your Optimised Route</h1>
+            <span class="icon is-large  ml-3 has-text-white">
+                <i class="fa-solid fa-earth-americas fas fa-2x"></i>
+            </span>
+        </div>
         <div class="box container blueDarkest is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
             <h2 id="optimisedHeading" class="is-size-3-desktop title has-text-white is-size-4-mobile">Generating Optimised Route</h2>
         </div>
-        <progress class="progress is-large is-info" id="progressBar">60%</progress>
+        <progress class="progress is-large is-info container" id="progressBar">60%</progress>
         <div class="box container">
             <nav class="level is-tablet">
                 <div class="level-item has-text-centered">
@@ -162,14 +187,14 @@
             <div id="mapContainer" class="container">
                 <div class="columns">
                 <div class="column is-7 is-flex">
-                  <div id="mainMap" style="width: 100%; height: 400px;">
+                  <div id="mainMap">
                   </div>
                 </div>
                 <div class="column is-5">
-                  <div class="box blueDark is-align-items-center">
+                  <div class="box blueDark" id="locationsOrdered">
                     <h3 class="title is-4 has-text-white">Optimised Route</h3>
                     <div class="columns">
-                      <div id="stopsInOrder" >
+                      <div id="stopsInOrder" class=" is-flex is-align-items-flex-start is-flex-direction-column">
                       </div>
                     </div>
                   </div>
@@ -179,28 +204,37 @@
     </section>
     <!-- Previous Search Section -->
     <section class="section" id="prev-search">
+        <div class="is-flex is-justify-content-center container mb-6">
+            <h1 class="title is-2 has-text-dark">Previous Searches</h1>
+            <span class="icon is-large  ml-3">
+                <i class="fa-solid fa-binoculars fas fa-2x"></i>
+            </span>
+        </div>
         <nav class="panel container has-background-white">
             <p class="panel-heading blueDark has-text-white">
-                Previous Searches
+                
             </p>
             <div class="panel-block">
                 <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Search" id="searchPrev">
+                    <input class="input is-size-5" type="text" placeholder="Search" id="searchPrev">
                     <span class="icon is-left">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </span>
                 </p>
             </div>
             <p class="panel-tabs">
-                <a class="is-active" data-transportType="all" onclick="changeActiveTab(event)">All</a>
-                <a data-transportType="car" onclick="changeActiveTab(event)">Car</a>
-                <a data-transportType="bike" onclick="changeActiveTab(event)">Bike</a>
-                <a data-transportType="foot" onclick="changeActiveTab(event)">Walk</a>
+                <a class="is-active is-size-5" data-transportType="all"  onclick="changeActiveTab(event)">All</a>
+                <a data-transportType="car" class="is-size-5" onclick="changeActiveTab(event)">Car</a>
+                <a data-transportType="bike" class="is-size-5" onclick="changeActiveTab(event)">Bike</a>
+                <a data-transportType="foot" class="is-size-5" onclick="changeActiveTab(event)">Walk</a>
             </p>
             <div id="previousSearchContent">
             </div>
         </nav>
     </section>
+    <footer class=" has-text-centered has-text-white" style="background-color: #004e89 ; height: 100px;">
+        <p class="has-text-weight-bold" style="font-size: 20px;">&copy; 2024 AS THE CROW DRIVES </p>
+    </footer>
     <!-- CDN for jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>

@@ -4,11 +4,14 @@ body {
     padding: 0;
 }
 
+.navbar{
+    border-bottom: 8px solid #033962;
+}
 #prev-search {
     position: relative;
     padding-top: 3em;
     scroll-margin-top: 5em;
-    min-height: 100vh;
+    min-height: 60vh;
 }
 
 #main-header {
@@ -41,23 +44,6 @@ body {
     display: none;
 }
 
-.box.blueDark {
-    overflow-y: auto;
-    max-height: 400px;
-}
-
-.orangeDark {
-    background-color: #FF6B35;
-}
-
-.orangeLight {
-    background-color: #FB966A;
-}
-
-.orangeLightest {
-    background-color: #F7C59F;
-}
-
 .blueLight {
     background-color: #85AAB7;
 }
@@ -70,18 +56,33 @@ body {
     background-color: #004E89;
 }
 
-#map {
-    height: 400px;
-    width: 400px;
-    border: 6px solid #1A659E;
-    margin-left: 100px;
-    margin-right: 50px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-}
-
 #mainMap {
     border-radius: 5px;
+    width: 100%;
+    min-height: 45vh;
+}
+
+#locationsOrdered {
+    overflow-y: auto;
+    min-height: 45vh;
+}
+.numberContainer{
+    position: relative;
+    bottom: 15px;
+}
+
+.locationBox{
+    width: 400px;
+}
+.navButton{
+    background-color: #990000;
+    border-radius: 100%;
+    position: relative;
+    bottom: -40%;
+}
+
+.navButton:hover{
+    background-color: #ae1a07;
 }
 
 .delete:hover {
@@ -148,4 +149,9 @@ body {
     position: relative;
     bottom: -5rem;
     cursor: pointer;  
+}
+
+footer{
+    border-top: 8px solid #033962;
+    padding-top: 20px;
 }
