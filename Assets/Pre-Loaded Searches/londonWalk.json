@@ -4,7 +4,7 @@
         "locations": [
             {
                 "id": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
-                "name": "visit_Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
+                "name": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
                 "address": {
                     "location_id": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
                     "lon": -0.0971901351203674,
@@ -13,7 +13,7 @@
             },
             {
                 "id": "London Eye, Westminster Bridge Road, London, SE1 7PB, United Kingdom",
-                "name": "visit_London Eye, Westminster Bridge Road, London, SE1 7PB, United Kingdom",
+                "name": "London Eye, Westminster Bridge Road, London, SE1 7PB, United Kingdom",
                 "address": {
                     "location_id": "London Eye, Westminster Bridge Road, London, SE1 7PB, United Kingdom",
                     "lon": -0.11967649999999999,
@@ -22,7 +22,7 @@
             },
             {
                 "id": "Trafalgar Square, London, SW1Y 5BJ, United Kingdom",
-                "name": "visit_Trafalgar Square, London, SW1Y 5BJ, United Kingdom",
+                "name": "Trafalgar Square, London, SW1Y 5BJ, United Kingdom",
                 "address": {
                     "location_id": "Trafalgar Square, London, SW1Y 5BJ, United Kingdom",
                     "lon": -0.1289624,
@@ -31,7 +31,7 @@
             },
             {
                 "id": "Buckingham Palace Garden, Buckingham Gate, London, SW1E 6LA, United Kingdom",
-                "name": "visit_Buckingham Palace Garden, Buckingham Gate, London, SW1E 6LA, United Kingdom",
+                "name": "Buckingham Palace Garden, Buckingham Gate, London, SW1E 6LA, United Kingdom",
                 "address": {
                     "location_id": "Buckingham Palace Garden, Buckingham Gate, London, SW1E 6LA, United Kingdom",
                     "lon": -0.1425648,
@@ -40,7 +40,7 @@
             },
             {
                 "id": "Tower Bridge, London, SE1 2LY, United Kingdom",
-                "name": "visit_Tower Bridge, London, SE1 2LY, United Kingdom",
+                "name": "Tower Bridge, London, SE1 2LY, United Kingdom",
                 "address": {
                     "location_id": "Tower Bridge, London, SE1 2LY, United Kingdom",
                     "lon": -0.0753662,
@@ -49,7 +49,7 @@
             },
             {
                 "id": "Borough Market, Green Dragon Court, London, SE1 9QG, United Kingdom",
-                "name": "visit_Borough Market, Green Dragon Court, London, SE1 9QG, United Kingdom",
+                "name": "Borough Market, Green Dragon Court, London, SE1 9QG, United Kingdom",
                 "address": {
                     "location_id": "Borough Market, Green Dragon Court, London, SE1 9QG, United Kingdom",
                     "lon": -0.09019844606970746,
@@ -67,9 +67,9 @@
     "routes": [
         {
             "type": "start",
-            "location_id": "visit_Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
+            "location_id": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
             "address": {
-                "location_id": "visit_Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
+                "location_id": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
                 "lat": 51.50812,
                 "lon": -0.09719
             },
@@ -207,9 +207,9 @@
         },
         {
             "type": "end",
-            "location_id": "visit_Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
+            "location_id": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
             "address": {
-                "location_id": "visit_Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
+                "location_id": "Shakespeare's Globe, 21 New Globe Walk, London, SE1 9DT, United Kingdom",
                 "lat": 51.50812,
                 "lon": -0.09719
             },

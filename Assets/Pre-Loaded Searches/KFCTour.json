@@ -4,7 +4,7 @@
         "locations": [
             {
                 "id": "KFC, Payneham Road, Marden SA 5070, Australia",
-                "name": "visit_KFC, Payneham Road, Marden SA 5070, Australia",
+                "name": "KFC, Payneham Road, Marden SA 5070, Australia",
                 "address": {
                     "location_id": "KFC, Payneham Road, Marden SA 5070, Australia",
                     "lon": 138.6402500650957,
@@ -13,7 +13,7 @@
             },
             {
                 "id": "KFC, Port Road, Welland SA 5007, Australia",
-                "name": "visit_KFC, Port Road, Welland SA 5007, Australia",
+                "name": "KFC, Port Road, Welland SA 5007, Australia",
                 "address": {
                     "location_id": "KFC, Port Road, Welland SA 5007, Australia",
                     "lon": 138.5581781,
@@ -22,7 +22,7 @@
             },
             {
                 "id": "KFC, 194 Greenhill Road, Eastwood SA 5063, Australia",
-                "name": "visit_KFC, 194 Greenhill Road, Eastwood SA 5063, Australia",
+                "name": "KFC, 194 Greenhill Road, Eastwood SA 5063, Australia",
                 "address": {
                     "location_id": "KFC, 194 Greenhill Road, Eastwood SA 5063, Australia",
                     "lon": 138.6166622757559,
@@ -31,7 +31,7 @@
             },
             {
                 "id": "KFC, 88 Hindley Street, Adelaide SA 5000, Australia",
-                "name": "visit_KFC, 88 Hindley Street, Adelaide SA 5000, Australia",
+                "name": "KFC, 88 Hindley Street, Adelaide SA 5000, Australia",
                 "address": {
                     "location_id": "KFC, 88 Hindley Street, Adelaide SA 5000, Australia",
                     "lon": 138.5962085,
@@ -40,7 +40,7 @@
             },
             {
                 "id": "KFC, Anzac Highway, Glenelg SA 5045, Australia",
-                "name": "visit_KFC, Anzac Highway, Glenelg SA 5045, Australia",
+                "name": "KFC, Anzac Highway, Glenelg SA 5045, Australia",
                 "address": {
                     "location_id": "KFC, Anzac Highway, Glenelg SA 5045, Australia",
                     "lon": 138.5195247,
@@ -49,7 +49,7 @@
             },
             {
                 "id": "KFC, Henley Beach Road, Torrensville SA 5031, Australia",
-                "name": "visit_KFC, Henley Beach Road, Torrensville SA 5031, Australia",
+                "name": "_KFC, Henley Beach Road, Torrensville SA 5031, Australia",
                 "address": {
                     "location_id": "KFC, Henley Beach Road, Torrensville SA 5031, Australia",
                     "lon": 138.55239119604715,
@@ -67,9 +67,9 @@
     "routes": [
         {
             "type": "start",
-            "location_id": "visit_KFC, Payneham Road, Marden SA 5070, Australia",
+            "location_id": "KFC, Payneham Road, Marden SA 5070, Australia",
             "address": {
-                "location_id": "visit_KFC, Payneham Road, Marden SA 5070, Australia",
+                "location_id": "KFC, Payneham Road, Marden SA 5070, Australia",
                 "lat": -34.89557,
                 "lon": 138.64025
             },
