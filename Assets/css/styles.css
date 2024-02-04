@@ -156,3 +156,42 @@ footer{
     border-top: 8px solid #033962;
     padding-top: 20px;
 }
+
+@media screen and (max-width: 1400px) {
+    .locationBox{
+        width: 340px;
+    }
+}
+
+@media screen and (max-width: 1214px) {
+    .locationBox {
+        width: 240px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .locationBox {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 761px) {
+    .locationBox {
+        width: 500px;
+    }
+}
+@media screen and (max-width: 660px) {
+    .locationBox {
+        width: 400px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .locationBox {
+        width: 300px;
+    }
+}
+@media screen and (max-width: 470px) {
+    .locationBox {
+        width: 200px;
+    }
+}

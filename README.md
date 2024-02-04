@@ -4,7 +4,10 @@
 
 The following project was made as a part of the Adelaide University Web Development Bootcamp. This project has been inspired by real life problems. The inspiration came from the concept of community care Physiotherapy, where a Physiotherapist would need to visit 7-8 homes in the span of a day. The question is, given the starting point, what is the most efficient way to visit every home. A classic problem which resembles that of the Travelling Salesman problem. Our group set out to create a tool which resolved this issue, by using route optimisation APIs this tool allows you to find out the most efficient order to visit up to 8 routes. The tool has also been created with a range of features in mind regarding route specifics such as mode of transport and whether or not the route is a round-trip or one way trip.
 
-This project was a valuable experience in handling 3rd-party APIs and mapping APIs. Through this project we were able to create complex API POST requests given customised information from the user and handle the data provided back from the API. Using this data we experimented with Leaflet's maps API and dynamically created those maps with scale, markers and polylines. Overall this project has been a deep dive into mapping APIs.
+This project was a valuable experience in handling 3rd-party APIs and mapping APIs. Through this project we were able to create complex API POST requests given requested locations and details from the user and handle the data provided back from the API. Using this data we experimented with Leaflet's maps API and dynamically created those maps with scale, markers and polylines. Overall this project has provided us with valuable experience in handling mapping and location based API's.
+
+Please Note:
+As of the 17th of February 2024, the free trial Graph Hopper API key will expire. This project will continue to provide the optimised route for up to 5 locations however will likely need an updated API key if you would like to trial longer distances yourself.
 
 Live Link: https://klanger98.github.io/AsTheCrowDrives/
 
@@ -12,7 +15,10 @@ Live Link: https://klanger98.github.io/AsTheCrowDrives/
 
 Currently it is possible to follow the live link and use the app immediatly.
 
-If the webpage is throwing errors for routes greater than 5, it is likely that the GraphHopper free trial has expired and you will need to replace the API key with one of your own.
+As of the 17th of February 2024, the free trial Graph Hopper API key will expire. This project will continue to provide the optimised route for up to 5 locations however will likely need an updated API key if you would like to trial longer distances yourself.
+
+Feel free to sign up for GraphHopper here to receive a free API key to trial longer routes:
+https://www.graphhopper.com/ 
 
 ## Usage
 

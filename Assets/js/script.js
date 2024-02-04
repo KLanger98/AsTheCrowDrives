@@ -1,3 +1,7 @@
+
+//Graph Hopper API key
+var graphHopperAPI = "0fea352e-4ff2-494a-87e2-ce960909dff8"
+
 // function for hamburger menu
 $(".navbar-burger").click(function() {
     $(".navbar-burger").toggleClass("is-active");
@@ -42,7 +46,6 @@ function addressAutocomplete() {
                 var autocompleteItemsElement = $('<div>', {
                     class: 'autocomplete-items'
                 });
-                console.log(data);
                 autoCompleteContainer.prepend(autocompleteItemsElement);
 
                 data.features.forEach((feature) => {
@@ -196,7 +199,7 @@ function loadSelected(event){
 //Delete a selected previous search
 function removeSearch(event){
     
-    let removeText = $(event.target).siblings('div').children('h5').text();
+    let removeText = $(event.target).siblings('div').children('p').text();
 
     let previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
 
@@ -307,9 +310,8 @@ function fetchOptimizedRoute(routeInfo, addToLocal){
         organisedData.services.push(routeInfo.locations[i])
     }
 
-    let fetchUrl = "https://graphhopper.com/api/1/vrp?key=4b8e0eda-a757-4baf-b8fd-63dcc8b828fe";
+    let fetchUrl = "https://graphhopper.com/api/1/vrp?key=" + graphHopperAPI;
 
-    console.log(organisedData);
     fetch(fetchUrl, {
         method: 'POST',
         headers: {
@@ -324,7 +326,6 @@ function fetchOptimizedRoute(routeInfo, addToLocal){
             return response.json();
         })
         .then(data => {
-            console.log(data);
             //load all necessary data into an object to be saved to local
             let newData = {
                 routeInfo: routeInfo,
@@ -469,7 +470,6 @@ function loadOptimisedRoute(data){
 function generateStop(position, num, data, url){
     let stopContainer =  $('<div>').addClass('is-flex is-align-items-center is-justify-content-center');
     let numberIconContainer = $('<span>').addClass('icon is-large numberContainer').append($('<i>').addClass('has-text-white fa-solid fa-' + (position + 1)));
-            
     let stopDiv = $('<div>').addClass('box blueDarkest locationBox').append($('<h6>').addClass('is-6 title has-text-white').text(data.routes[num].address.location_id));
 
     stopContainer.append(numberIconContainer, stopDiv)
@@ -529,7 +529,6 @@ function loadLastSearch(){
     if(!lastSearch){
         return
     }
-    console.log(lastSearch)
     fetchOptimizedRoute(lastSearch[0].routeInfo, false);
 
 }
