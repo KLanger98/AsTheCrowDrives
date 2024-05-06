@@ -1,6 +1,6 @@
 
 //Graph Hopper API key
-var graphHopperAPI = "0fea352e-4ff2-494a-87e2-ce960909dff8"
+var graphHopperAPI = "c87ab939-ed04-4b7c-992a-b07cc2cf8495"
 
 // function for hamburger menu
 $(".navbar-burger").click(function() {
